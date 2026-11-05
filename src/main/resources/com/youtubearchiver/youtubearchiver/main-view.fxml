@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.youtubearchiver.youtubearchiver.HelloController">
+<GridPane alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.youtubearchiver.youtubearchiver.MainController">
 
     <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

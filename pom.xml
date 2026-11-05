@@ -47,6 +47,16 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.google.api</groupId>
+            <artifactId>api-common</artifactId>
+            <version>2.70.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.5.10</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -70,7 +80,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.youtubearchiver.youtubearchiver/com.youtubearchiver.youtubearchiver.HelloApplication
+                                com.youtubearchiver.youtubearchiver/com.youtubearchiver.youtubearchiver.YoutubeArchiverApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
