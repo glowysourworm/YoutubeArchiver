@@ -5,6 +5,6 @@ module com.youtubearchiver.youtubearchiver {
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
 
-    opens com.youtubearchiver.youtubearchiver to javafx.fxml;
-    exports com.youtubearchiver.youtubearchiver;
+    opens com.youtubearchiver to javafx.fxml;
+    exports com.youtubearchiver;
 }

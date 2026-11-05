@@ -1,4 +1,4 @@
-package com.youtubearchiver.youtubearchiver;
+package com.youtubearchiver;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

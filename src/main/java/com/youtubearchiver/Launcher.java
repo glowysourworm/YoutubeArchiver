@@ -1,4 +1,4 @@
-package com.youtubearchiver.youtubearchiver;
+package com.youtubearchiver;
 
 import javafx.application.Application;
 

@@ -1,4 +1,4 @@
-package com.youtubearchiver.youtubearchiver;
+package com.youtubearchiver;
 
 import javafx.beans.binding.ObjectBinding;
 import javafx.beans.property.SimpleStringProperty;
