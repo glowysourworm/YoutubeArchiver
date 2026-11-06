@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed2043e7-25b0-429f-9e3e-40fb6f1d28e5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/Launcher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/MainController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/Person.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/YoutubeArchiverApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/youtubearchiver/main-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,10 +23,69 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5,
-  "fromUser": false
-}]]></component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000000000849947" />
+      <entry key="S2" value="1.0033488139040865" />
+      <entry key="S5" value="1.1380124578165063" />
+      <entry key="S10" value="1.5127291837767471" />
+      <entry key="S30" value="2.263337096624659" />
+      <entry key="S60" value="2.589551504697772" />
+      <entry key="M2" value="2.829776334015829" />
+      <entry key="M5" value="3.358594093340248" />
+      <entry key="M10" value="3.901826801431504" />
+      <entry key="M15" value="4.184861045565389" />
+      <entry key="M30" value="4.543777320203096" />
+      <entry key="H1" value="4.758167695122186" />
+      <entry key="H2" value="4.875437033086619" />
+      <entry key="H4" value="4.936778243791443" />
+      <entry key="D1" value="4.98932994929777" />
+      <entry key="W1" value="4.9984724145870025" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.9526379980439373" />
+      <entry key="MS500" value="0.9903428720175492" />
+      <entry key="S2" value="1.000920883656256" />
+      <entry key="S5" value="1.1369550341987011" />
+      <entry key="S10" value="1.512074372946104" />
+      <entry key="S30" value="2.2630316450671466" />
+      <entry key="S60" value="2.5893793124966984" />
+      <entry key="M2" value="2.8296788465649647" />
+      <entry key="M5" value="3.3585341219989755" />
+      <entry key="M10" value="3.9017844534966732" />
+      <entry key="M15" value="4.184828419718662" />
+      <entry key="M30" value="4.543758197128487" />
+      <entry key="H1" value="4.758157289863454" />
+      <entry key="H2" value="4.875431599165385" />
+      <entry key="H4" value="4.936775466272458" />
+      <entry key="D1" value="4.989329477725491" />
+      <entry key="W1" value="4.998472347004421" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3Lk1kG4MggmUIXBPSNmvR8FlSYA" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -47,6 +93,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.YoutubeArchiverDebug.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -55,9 +102,23 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "nodejs_package_manager_path": "npm"
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="YoutubeArchiverDebug" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.youtubearchiver.youtubearchiver.Launcher" />
+      <module name="YoutubeArchiver" />
+      <option name="VM_PARAMETERS" value="--enable-native-access=javafx.graphics --sun-misc-unsafe-memory-access=allow" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
