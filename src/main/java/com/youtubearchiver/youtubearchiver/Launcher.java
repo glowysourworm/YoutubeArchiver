@@ -1,9 +1,9 @@
-package com.youtubearchiver;
+package com.youtubearchiver.youtubearchiver;
 
 import javafx.application.Application;
 
 public class Launcher {
     public static void main(String[] args) {
-        Application.launch(YoutubeArchiverApplication.class, args);
+        Application.launch(HelloApplication.class, args);
     }
 }
