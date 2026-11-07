@@ -1,16 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets.*?>
+
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<GridPane xmlns="http://javafx.com/javafx/8"
+          xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.youtubearchiver.youtubearchiver.MainController">
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.youtubearchiver.youtubearchiver.MainController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+   <columnConstraints>
+       <ColumnConstraints maxWidth="160" minWidth="160" />
+       <ColumnConstraints minWidth="200" maxWidth="200" />
+       <ColumnConstraints fillWidth="true" hgrow="ALWAYS" />
+   </columnConstraints>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+   <rowConstraints>
+       <RowConstraints maxHeight="32.0" minHeight="32.0" />
+       <RowConstraints fillHeight="true" vgrow="ALWAYS" />
+       <RowConstraints maxHeight="32.0" minHeight="32.0" />
+   </rowConstraints>
+
+    <children>
+
+        <!-- Youtube Channel / Video URL -->
+        <Label text="Youtube URL">
+            <padding>
+                <Insets top="5" bottom="5" left="5" right="5" />
+            </padding>
+        </Label>
+        <TextField fx:id="youtubeURLText" GridPane.columnIndex="1" />
+
+        <!-- Youtube Channel's Video List -->
+        <ListView fx:id="videoListView" GridPane.rowIndex="1" GridPane.columnSpan="2" />
+
+        <!-- Execute Button -->
+        <Button fx:id="getButton"
+                onMouseClicked="#onGetButtonClicked"
+                text="Get Comment(s)"
+                GridPane.columnIndex="1"
+                GridPane.rowIndex="3"
+                GridPane.halignment="RIGHT">
+            <padding>
+                <Insets top="5" bottom="5" left="5" right="5" />
+            </padding>
+        </Button>
+
+        <!-- Youtube Comment List -->
+        <ListView fx:id="commentListView" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+
+    </children>
+
+</GridPane>
