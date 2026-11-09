@@ -1,6 +1,7 @@
 package com.youtubearchiver.youtubearchiver;
 
 import YoutubeArchiverDatabase.Model.YoutubeComment;
+import YoutubeArchiverDatabase.Utility.PythonRunner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ public class MainController {
 
     // Data Sources
     protected ObservableList<String> videoListSource;
+    protected ObservableList<YoutubeComment> commentListSource;
 
     public MainController()
     {
@@ -31,14 +33,23 @@ public class MainController {
     {
         // Create ObservableList<> implementation from ArrayList<> (assuming their bindings are already implemented)
         this.videoListSource = FXCollections.observableList(new ArrayList<String>());
+        this.commentListSource = FXCollections.observableList(new ArrayList<YoutubeComment>());
 
         // Apply Data Source
         this.videoListView.setItems(this.videoListSource);
+        this.commentListView.setItems(this.commentListSource);
     }
 
     @FXML
     protected void onGetButtonClicked()
     {
+        var commentService = new PythonRunner();
 
+        // Run comment extraction service
+        var result = commentService.ExtractYoutubeComments(this.youtubeURLText.getText());
+
+        // Populate Result Comments
+        this.commentListSource.clear();
+        this.commentListSource.addAll(result);
     }
 }

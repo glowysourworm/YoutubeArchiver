@@ -6,6 +6,8 @@ module com.youtubearchiver.youtubearchiver {
     requires org.kordamp.ikonli.javafx;
     requires YoutubeArchiverDatabase;
     requires jdk.compiler;
+    requires jakarta.persistence;
+    requires org.hibernate.orm.core;
 
     opens com.youtubearchiver.youtubearchiver to javafx.fxml;
     exports com.youtubearchiver.youtubearchiver;
