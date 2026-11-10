@@ -2,7 +2,9 @@ package com.youtubearchiver.youtubearchiver;
 
 import YoutubeArchiverDatabase.Configuration;
 import YoutubeArchiverDatabase.Model.YoutubeComment;
-import YoutubeArchiverDatabase.Utility.PythonRunner;
+import YoutubeArchiverDatabase.Utility.UtilityModel.YoutubeVideoDownloaderMetadata;
+import YoutubeArchiverDatabase.Utility.YoutubeCommentRunner;
+import YoutubeArchiverDatabase.Utility.YoutubeVideoRunner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,10 +13,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainController
 {
-
     // UI Elements (main-view.fxml)
     @FXML private TextField youtubeURLText;
     @FXML private ListView<String> videoListView;
@@ -56,18 +58,54 @@ public class MainController
     @FXML
     protected void onGetButtonClicked()
     {
-        var service = new PythonRunner(this.configuration);
-
-        // Run channel extraction service
-        var videoResult = service.ExtractYoutubeVideo(this.youtubeURLText.getText(), true);
+        // Run video extraction service
+        var videoResult = ExecuteVideoDownload(this.youtubeURLText.getText());
 
         // Run comment extraction service
-        var commentResult = service.ExtractYoutubeComments(this.youtubeURLText.getText(), videoResult.channel_id);
+        if (videoResult != null)
+        {
+            // TODO:  Load results into the database
 
-        // TODO:  Load results into the database
+            var commentResult = ExecuteCommentsDownload(videoResult.channel_id, this.youtubeURLText.getText());
 
-        // Populate Result Comments
-        this.commentListSource.clear();
-        this.commentListSource.addAll(commentResult);
+            // Populate Result Comments
+            if (commentResult != null)
+            {
+                this.commentListSource.clear();
+                this.commentListSource.addAll(commentResult);
+            }
+        }
+    }
+
+    private List<YoutubeComment> ExecuteCommentsDownload(String channelId, String videoId)
+    {
+        // Run channel extraction service
+        try
+        {
+            var youtubeCommentDownloader = new YoutubeCommentRunner(this.configuration);
+            return youtubeCommentDownloader.Run(channelId, videoId);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    private YoutubeVideoDownloaderMetadata ExecuteVideoDownload(String videoId)
+    {
+        // Run video extraction service
+        try
+        {
+            var youtubeVideoDownloader = new YoutubeVideoRunner(this.configuration);
+            return youtubeVideoDownloader.Run(videoId, true);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
