@@ -1,0 +1,8 @@
+{
+    "databaseHost" : "localhost",
+    "databasePort" : 3306,
+    "databaseUser" : "root",
+    "databasePassword" : "!ngndol234",
+    "youtubeDataDirectory" : "youtube-data",
+    "youtubeApiKey" : ""
+}

@@ -8,6 +8,8 @@ module com.youtubearchiver.youtubearchiver {
     requires jdk.compiler;
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
+    requires jakarta.xml.bind;
+    requires tools.jackson.databind;
 
     opens com.youtubearchiver.youtubearchiver to javafx.fxml;
     exports com.youtubearchiver.youtubearchiver;

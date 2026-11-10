@@ -1,5 +1,6 @@
 package com.youtubearchiver.youtubearchiver;
 
+import YoutubeArchiverDatabase.Configuration;
 import YoutubeArchiverDatabase.Model.YoutubeComment;
 import YoutubeArchiverDatabase.Utility.PythonRunner;
 import javafx.collections.FXCollections;
@@ -11,7 +12,8 @@ import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
 
-public class MainController {
+public class MainController
+{
 
     // UI Elements (main-view.fxml)
     @FXML private TextField youtubeURLText;
@@ -23,9 +25,20 @@ public class MainController {
     protected ObservableList<String> videoListSource;
     protected ObservableList<YoutubeComment> commentListSource;
 
+    // Configuration
+    protected Configuration configuration;
+
     public MainController()
     {
         // Must wait for fxml code to compile (see @FXML initialize)
+    }
+
+    /// Sets application configuration - must be done during startup; and before user gets
+    /// to the UI.
+    /// @param configuration Primary (readonly configuration)
+    public void setConfiguration(final Configuration configuration)
+    {
+        this.configuration = configuration;
     }
 
     @FXML
@@ -43,13 +56,18 @@ public class MainController {
     @FXML
     protected void onGetButtonClicked()
     {
-        var commentService = new PythonRunner();
+        var service = new PythonRunner(this.configuration);
+
+        // Run channel extraction service
+        var videoResult = service.ExtractYoutubeVideo(this.youtubeURLText.getText(), true);
 
         // Run comment extraction service
-        var result = commentService.ExtractYoutubeComments(this.youtubeURLText.getText());
+        var commentResult = service.ExtractYoutubeComments(this.youtubeURLText.getText(), videoResult.channel_id);
+
+        // TODO:  Load results into the database
 
         // Populate Result Comments
         this.commentListSource.clear();
-        this.commentListSource.addAll(result);
+        this.commentListSource.addAll(commentResult);
     }
 }
