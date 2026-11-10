@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed2043e7-25b0-429f-9e3e-40fb6f1d28e5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Service/YoutubeDatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Service/YoutubeDatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Service/YoutubeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Service/YoutubeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/PythonRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/PythonRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/UtilityModel/YoutubeVideoDownloaderMetadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/UtilityModel/YoutubeVideoDownloaderMetadata.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/module-info.java" afterDir="false" />
-    </list>
+    <list default="true" id="ed2043e7-25b0-429f-9e3e-40fb6f1d28e5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -188,21 +177,6 @@
           <url>file://$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/PythonRunner.java</url>
           <line>463</line>
           <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/PythonRunner.java</url>
-          <line>428</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/PythonRunner.java</url>
-          <line>267</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/PythonRunner.java</url>
-          <line>297</line>
-          <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
