@@ -62,7 +62,7 @@
     </StackPane>
 
     <!-- Bottom Layout -->
-    <StackPane maxHeight="300">
+    <StackPane maxHeight="600">
         <TextArea fx:id="outputTextArea" editable="false" />
     </StackPane>
 

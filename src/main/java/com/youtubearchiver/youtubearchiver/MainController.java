@@ -10,6 +10,8 @@ import YoutubeArchiverDatabase.Utility.ApplicationHelpers;
 import YoutubeArchiverDatabase.Utility.UtilityModel.YoutubeVideoDownloaderMetadata;
 import YoutubeArchiverDatabase.Utility.YoutubeCommentRunner;
 import YoutubeArchiverDatabase.Utility.YoutubeVideoRunner;
+
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,8 +20,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import java.util.concurrent.*;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Supplier;
 
 public class MainController
 {
@@ -38,12 +44,15 @@ public class MainController
     // Configuration
     protected Configuration configuration;
 
-    // UI Log Appender (needed to access initial log)
-    protected SimpleLogger logAppender;
+    // Async Blocking
+    private boolean running;
 
     public MainController()
     {
         // Must wait for fxml code to compile (see @FXML initialize)
+
+        // Async Blocking:  The long running actions are for the shell commands
+        this.running = false;
     }
 
     /// Sets application configuration - must be done during startup; and before user gets
@@ -69,7 +78,29 @@ public class MainController
         // Output Log: Append text messages from the log
         EventAggregator.GetEvent(LogMessageEvent.class).Subscribe(message ->
         {
-            appendLogMessage(message);
+            // o(@.^)@  <-- Java Psycho..  When you "send" a delegate to the main thread it is common
+            //                             to add data.. like a real function..! Why is there no parameter
+            //                             available?
+            Platform.runLater(() ->
+            {
+                // When was message changed?  There could've been some reference data modified.  Obviously,
+                // we can handle that here.. But, why is there no parameter? The Java backend would be
+                // dealing with threading issues related to the core.
+                //
+                // I suspect they did not want to deal with context switching for performance reasons. Both
+                // MSFT and Java have never restructured their backends after binding was introduced. They
+                // have to learn the hardest part of pri-maddona-ing:
+                //
+                // Giving up control
+                //
+                // Let's work together and rebuild C++, using a Java-based compiler toolset, reducing the
+                // number of language features, ridding the kernel bugs of the past, and completing an
+                // actually modular compiler to perform native compiling.
+                //
+                // GNU Standards! Meetings are daily at 9am sharp! All in attendance are the team!  ^_^
+                //
+                appendLogMessage(message);
+            });
         });
 
         // Initialize Log:  There are already log messages on the output
@@ -82,7 +113,7 @@ public class MainController
     private void appendLogMessage(String message)
     {
         // Remove oldest line of text
-        if (this.textLineCounter > 1000)
+        if (this.textLineCounter++ > 1000)
         {
             var firstLineIndex = this.outputTextArea.getText().indexOf('\n');
 
@@ -97,23 +128,39 @@ public class MainController
     @FXML
     protected void onGetButtonClicked()
     {
+        if (this.youtubeURLText.getText().isBlank())
+            return;
+
+        var videoId = this.youtubeURLText.getText();
+        var videoResult = new AtomicReference<YoutubeVideoDownloaderMetadata>();
+        var commentResult = new AtomicReference<List<YoutubeComment>>();
+
         // Run video extraction service
-        var videoResult = ExecuteVideoDownload(this.youtubeURLText.getText());
-
-        // Run comment extraction service
-        if (videoResult != null)
+        CompletableFuture.supplyAsync(() ->
         {
-            // TODO:  Load results into the database
+            // -> yt-dlp (videoId)
+            videoResult.set(ExecuteVideoDownload(videoId));
 
-            var commentResult = ExecuteCommentsDownload(videoResult.channel_id, this.youtubeURLText.getText());
+            // Success!
+            if (videoResult.get() != null)
+            {
+                // TODO:  Load results into the database
 
+                // -> youtube-comment-downloader (channelId, videoId)
+                commentResult.set(ExecuteCommentsDownload(videoResult.get().channel_id, videoId));
+            }
+
+            return true;
+
+        }).thenAccept((result) ->
+        {
             // Populate Result Comments
-            if (commentResult != null)
+            if (commentResult.get() != null)
             {
                 this.commentListSource.clear();
-                this.commentListSource.addAll(commentResult);
+                this.commentListSource.addAll(commentResult.get());
             }
-        }
+        });
     }
 
     private List<YoutubeComment> ExecuteCommentsDownload(String channelId, String videoId)

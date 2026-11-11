@@ -1,4 +1,5 @@
-module com.youtubearchiver.youtubearchiver {
+module com.youtubearchiver.youtubearchiver
+{
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -9,6 +10,7 @@ module com.youtubearchiver.youtubearchiver {
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
     requires tools.jackson.databind;
+    requires org.apache.httpcomponents.httpcore;
 
     opens com.youtubearchiver.youtubearchiver to javafx.fxml;
     exports com.youtubearchiver.youtubearchiver;
