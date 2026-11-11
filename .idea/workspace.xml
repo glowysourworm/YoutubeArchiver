@@ -6,13 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ed2043e7-25b0-429f-9e3e-40fb6f1d28e5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/youtubearchiver/youtubearchiver/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/youtubearchiver/youtubearchiver/main-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/ShellRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/ShellRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/YoutubeCommentRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/YoutubeCommentRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/youtubearchiver/youtubearchiver/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/youtubearchiver/youtubearchiver/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,61 +46,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000000000526" />
-      <entry key="MS500" value="1.002209598560246" />
-      <entry key="S2" value="1.2168095183172571" />
-      <entry key="S5" value="1.542571442992391" />
-      <entry key="S10" value="1.743562552974602" />
-      <entry key="S30" value="2.1947422226463646" />
-      <entry key="S60" value="2.7134107944853953" />
-      <entry key="M2" value="3.4389004892428217" />
-      <entry key="M5" value="7.902961506973627" />
-      <entry key="M10" value="20.19321061602783" />
-      <entry key="M15" value="35.49729269120495" />
-      <entry key="M30" value="95.43022909170689" />
-      <entry key="H1" value="264.38132296253264" />
-      <entry key="H2" value="617.3261024887646" />
-      <entry key="H4" value="1189.5897617701485" />
-      <entry key="D1" value="3075.202255139818" />
-      <entry key="W1" value="4196.394357965946" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.000002161553879" />
+      <entry key="S2" value="1.0464504579163945" />
+      <entry key="S5" value="1.5609846769964366" />
+      <entry key="S10" value="2.6194361955455996" />
+      <entry key="S30" value="4.8024798351984295" />
+      <entry key="S60" value="6.556928400193867" />
+      <entry key="M2" value="12.06607998893063" />
+      <entry key="M5" value="36.641573350285235" />
+      <entry key="M10" value="77.75869889800688" />
+      <entry key="M15" value="113.96488781622779" />
+      <entry key="M30" value="201.9576368377449" />
+      <entry key="H1" value="368.60280119715674" />
+      <entry key="H2" value="712.9665998733018" />
+      <entry key="H4" value="1299.4070038216557" />
+      <entry key="D1" value="3301.9511820693783" />
+      <entry key="W1" value="4493.406834695931" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.7845840978967507" />
-      <entry key="MS500" value="0.9526379980439375" />
-      <entry key="S2" value="0.9879431971405315" />
-      <entry key="S5" value="0.9951626969827899" />
-      <entry key="S10" value="0.9993017912612836" />
-      <entry key="S30" value="1.119119064922274" />
-      <entry key="S60" value="1.3459076299068853" />
-      <entry key="M2" value="1.5925038312811184" />
-      <entry key="M5" value="2.0953264709186525" />
-      <entry key="M10" value="4.112420941858599" />
-      <entry key="M15" value="7.266517599160405" />
-      <entry key="M30" value="18.135175777160455" />
-      <entry key="H1" value="43.27398626995184" />
-      <entry key="H2" value="100.76217773965993" />
-      <entry key="H4" value="212.64003789070097" />
-      <entry key="D1" value="614.9241300716253" />
-      <entry key="W1" value="845.5361190706037" />
+      <entry key="MS100" value="1.4131566739104749E-15" />
+      <entry key="MS500" value="0.0010716132202922292" />
+      <entry key="S2" value="0.1809295552746114" />
+      <entry key="S5" value="0.5046657205752167" />
+      <entry key="S10" value="0.7103982830604468" />
+      <entry key="S30" value="0.8923055680758376" />
+      <entry key="S60" value="0.952264811716715" />
+      <entry key="M2" value="1.131087768117481" />
+      <entry key="M5" value="2.624808801238501" />
+      <entry key="M10" value="6.282837877126299" />
+      <entry key="M15" value="9.888697266419838" />
+      <entry key="M30" value="20.118975021183473" />
+      <entry key="H1" value="42.494082750764676" />
+      <entry key="H2" value="95.74761917217529" />
+      <entry key="H4" value="205.4305857815555" />
+      <entry key="D1" value="624.9651682137287" />
+      <entry key="W1" value="869.184470470358" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9516590344132055" />
-      <entry key="MS500" value="1.3456730531759287" />
-      <entry key="S2" value="1.984631438813377" />
-      <entry key="S5" value="2.4418868558224864" />
-      <entry key="S10" value="2.689459996234042" />
-      <entry key="S30" value="3.2331200657414727" />
-      <entry key="S60" value="3.9659652925105484" />
-      <entry key="M2" value="4.956185756123715" />
-      <entry key="M5" value="9.948170696005095" />
-      <entry key="M10" value="24.25982259434132" />
-      <entry key="M15" value="42.71380765521928" />
-      <entry key="M30" value="113.50414346786128" />
-      <entry key="H1" value="307.5802303940755" />
-      <entry key="H2" value="718.0038166940584" />
-      <entry key="H4" value="1402.1494531542276" />
-      <entry key="D1" value="3690.092659215228" />
-      <entry key="W1" value="5041.92365458585" />
+      <entry key="MS100" value="0.004157696025208437" />
+      <entry key="MS500" value="0.3340222607927266" />
+      <entry key="S2" value="0.8391732398581497" />
+      <entry key="S5" value="1.6774476613886342" />
+      <entry key="S10" value="3.000308567084461" />
+      <entry key="S30" value="5.515687345594341" />
+      <entry key="S60" value="7.397160645573277" />
+      <entry key="M2" value="13.115625044420655" />
+      <entry key="M5" value="39.194706725571955" />
+      <entry key="M10" value="83.9723386613183" />
+      <entry key="M15" value="123.7863196977741" />
+      <entry key="M30" value="222.01119364909007" />
+      <entry key="H1" value="411.0262620274051" />
+      <entry key="H2" value="808.6351511030385" />
+      <entry key="H4" value="1504.7595877147794" />
+      <entry key="D1" value="3926.881790153329" />
+      <entry key="W1" value="5362.584257268353" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -137,7 +133,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.33908045",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.archetype.catalogs"
+    "settings.editor.selected.configurable": "debugger.hotswap"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [

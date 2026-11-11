@@ -19,6 +19,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import org.controlsfx.control.StatusBar;
 
 import java.util.concurrent.*;
 
@@ -33,8 +36,8 @@ public class MainController
     @FXML private TextField youtubeURLText;
     @FXML private ListView<String> videoListView;
     @FXML private ListView<YoutubeComment> commentListView;
-    @FXML private Button getButton;
     @FXML private TextArea outputTextArea;
+    @FXML private StatusBar statusBar;
 
     // Data Sources
     protected ObservableList<String> videoListSource;
@@ -45,7 +48,7 @@ public class MainController
     protected Configuration configuration;
 
     // Async Blocking
-    private boolean running;
+    protected boolean running;
 
     public MainController()
     {
@@ -123,13 +126,20 @@ public class MainController
 
         // -> Autoscroll (to bottom)
         this.outputTextArea.appendText(message + "\n");
+        this.statusBar.setText(message);
     }
 
     @FXML
-    protected void onGetButtonClicked()
+    protected void onSearchButtonClicked()
     {
+        if (this.running)
+            return;
+
         if (this.youtubeURLText.getText().isBlank())
             return;
+
+        // Async Blocker
+        this.running = true;
 
         var videoId = this.youtubeURLText.getText();
         var videoResult = new AtomicReference<YoutubeVideoDownloaderMetadata>();
@@ -155,11 +165,14 @@ public class MainController
         }).thenAccept((result) ->
         {
             // Populate Result Comments
-            if (commentResult.get() != null)
+            Platform.runLater(() ->
             {
-                this.commentListSource.clear();
-                this.commentListSource.addAll(commentResult.get());
-            }
+                if (commentResult.get() != null)
+                {
+                    this.commentListSource.clear();
+                    this.commentListSource.addAll(commentResult.get());
+                }
+            });
         });
     }
 

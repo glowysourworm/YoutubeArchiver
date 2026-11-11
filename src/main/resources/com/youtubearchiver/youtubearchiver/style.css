@@ -1,2 +1,6 @@
 .text-area#outputTextArea {
 }
+
+.hbox {
+    -fx-spacing: 5.0;
+}
