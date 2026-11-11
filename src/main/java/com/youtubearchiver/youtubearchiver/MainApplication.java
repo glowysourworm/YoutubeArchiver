@@ -1,6 +1,11 @@
 package com.youtubearchiver.youtubearchiver;
 
 import YoutubeArchiverDatabase.Configuration;
+import YoutubeArchiverDatabase.Event.EventAggregator;
+import YoutubeArchiverDatabase.Event.LogMessageEvent;
+import YoutubeArchiverDatabase.Logging.LogLevel;
+import YoutubeArchiverDatabase.Logging.LogMessage;
+import YoutubeArchiverDatabase.Logging.SimpleOutputStream;
 import YoutubeArchiverDatabase.Utility.ApplicationHelpers;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,13 +13,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import org.hibernate.cfg.Environment;
 import tools.jackson.databind.DeserializationFeature;
 import tools.jackson.databind.ObjectMapper;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -29,7 +33,7 @@ public class MainApplication extends Application
 
     /// Primary (user-end) configuration for the application
     private Configuration configuration;
-    
+
     // Main Scene (passed in at the "start" method)
     private Scene mainScene;
 
@@ -38,13 +42,42 @@ public class MainApplication extends Application
     @Override
     public void init() throws Exception
     {
+        // Base class initialization
         super.init();
+
+        // Logging:  Send console to custom stream to include log4j; and
+        //           add custom appender to be able to access log messages.
+        //
+        //           Log messages are forwarded using the EventAggregator.
+        //
+
+        // Custom PrintStream
+        //
+
+        // Redirect System.out to ILogger Info level
+        System.setOut(new PrintStream(
+                new SimpleOutputStream(ApplicationHelpers.GetLogger(), LogLevel.Info), true)
+        );
+
+        // Redirect System.err to ILogger Error level
+        System.setErr(new PrintStream(
+                new SimpleOutputStream(ApplicationHelpers.GetLogger(), LogLevel.Error), true)
+        );
+
+        // Event Aggregator:  Experimenting with event aggregator pattern.. The observable
+        //                    pattern will work here as well.
+        //
+        EventAggregator.RegisterEvent(new LogMessageEvent());
+
+        // *** Log4j Initialization Complete ***
 
         this.initializationError = false;
 
         // Environment Variable(s) Check
         try
         {
+            ApplicationHelpers.Log(LogMessage.Info("Initializing Environment Variables"));
+
             var scriptFolder = System.getenv(PYTHON_SCRIPT_FOLDER_KEY);
 
             if (!Files.exists(Path.of(scriptFolder)))
@@ -52,14 +85,16 @@ public class MainApplication extends Application
         }
         catch (Exception e)
         {
-            this.initializationError = true;
+            ApplicationHelpers.Log(LogMessage.Error("Missing / Invalid Environment Variable", e));
 
-            e.printStackTrace();
+            this.initializationError = true;
         }
 
         // Read Configuration
         try (var fileBuffer = new FileReader(CONFIGURATION_FILE))
         {
+            ApplicationHelpers.Log(LogMessage.Info("Reading Configuration File:  " + CONFIGURATION_FILE));
+
             // Jackson:  Java <-> JSON API (premier Java JSON API; using tools v3.x.x)
             var mapper = new ObjectMapper();
 
@@ -76,13 +111,13 @@ public class MainApplication extends Application
                                        .readValue(fileContents);
 
             // Verify data
-            System.out.println(this.configuration);
+            // ApplicationHelpers.Log(LogMessage.Info("Youtube Archiver Configuration:  " + this.configuration));
 
             // Defaults
             if (this.configuration.youtubeDataDirectory.isBlank())
             {
                 this.configuration.youtubeDataDirectory = CONFIGURATION_YOUTUBE_DATA_DIR_DEFAULT;
-                System.out.printf("Youtube Data Directory (not found):  defaulting to %1s", this.configuration.youtubeDataDirectory);
+                ApplicationHelpers.Log(new LogMessage(String.format("Youtube Data Directory (not found):  defaulting to %1s", this.configuration.youtubeDataDirectory), LogLevel.Error, null));
             }
 
             // Data Directories:  youtubeDataDirectory
@@ -93,9 +128,8 @@ public class MainApplication extends Application
         }
         catch (IOException e)
         {
-            System.out.println("Error reading youtube-archiver.json (please check run directory)");
-
-            e.printStackTrace();
+            ApplicationHelpers.Log(LogMessage.Error("Error reading youtube-archiver.json (please check run directory)", e));
+            ApplicationHelpers.Log(LogMessage.Info("Default configuration loaded..."));
 
             // Default Configuration
             this.configuration = new Configuration();
@@ -125,7 +159,7 @@ public class MainApplication extends Application
         // Returns main controller
         var mainController = (MainController)fxmlLoader.getController();
 
-        // -> Set Configuration
+        // -> Set Configuration, Log Appender
         mainController.setConfiguration(this.configuration);
 
         // Create Scene

@@ -5,50 +5,67 @@
 <?import javafx.geometry.Insets.*?>
 
 <?import javafx.geometry.Insets?>
-<GridPane xmlns="http://javafx.com/javafx/8"
-          xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="com.youtubearchiver.youtubearchiver.MainController">
 
-   <columnConstraints>
-       <ColumnConstraints maxWidth="160" minWidth="160" />
-       <ColumnConstraints minWidth="200" maxWidth="200" />
-       <ColumnConstraints fillWidth="true" hgrow="ALWAYS" />
-   </columnConstraints>
+<SplitPane xmlns="http://javafx.com/javafx/8"
+           xmlns:fx="http://javafx.com/fxml/1"
+           stylesheets="@style.css"
+           fx:controller="com.youtubearchiver.youtubearchiver.MainController"
+           orientation="VERTICAL">
 
-   <rowConstraints>
-       <RowConstraints maxHeight="32.0" minHeight="32.0" />
-       <RowConstraints fillHeight="true" vgrow="ALWAYS" />
-       <RowConstraints maxHeight="32.0" minHeight="32.0" />
-   </rowConstraints>
+    <!-- Top Layout -->
+    <StackPane>
+        <GridPane>
 
-    <children>
+            <columnConstraints>
+                <ColumnConstraints maxWidth="160" minWidth="160" />
+                <ColumnConstraints minWidth="200" maxWidth="200" />
+                <ColumnConstraints fillWidth="true" hgrow="ALWAYS" />
+            </columnConstraints>
 
-        <!-- Youtube Channel / Video URL -->
-        <Label text="Youtube URL">
-            <padding>
-                <Insets top="5" bottom="5" left="5" right="5" />
-            </padding>
-        </Label>
-        <TextField fx:id="youtubeURLText" GridPane.columnIndex="1" />
+            <rowConstraints>
+                <RowConstraints maxHeight="32.0" minHeight="32.0" />
+                <RowConstraints fillHeight="true" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="32.0" minHeight="32.0" />
+            </rowConstraints>
 
-        <!-- Youtube Channel's Video List -->
-        <ListView fx:id="videoListView" GridPane.rowIndex="1" GridPane.columnSpan="2" />
+            <children>
 
-        <!-- Execute Button -->
-        <Button fx:id="getButton"
-                onMouseClicked="#onGetButtonClicked"
-                text="Get Comment(s)"
-                GridPane.columnIndex="1"
-                GridPane.rowIndex="3"
-                GridPane.halignment="RIGHT">
-            <padding>
-                <Insets top="5" bottom="5" left="5" right="5" />
-            </padding>
-        </Button>
+                <!-- Youtube Channel / Video URL -->
+                <Label text="Youtube URL">
+                    <padding>
+                        <Insets top="5" bottom="5" left="5" right="5" />
+                    </padding>
+                </Label>
+                <TextField fx:id="youtubeURLText" GridPane.columnIndex="1" />
 
-        <!-- Youtube Comment List -->
-        <ListView fx:id="commentListView" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+                <!-- Youtube Channel's Video List -->
+                <ListView fx:id="videoListView" GridPane.rowIndex="1" GridPane.columnSpan="2" />
 
-    </children>
+                <!-- Execute Button -->
+                <Button fx:id="getButton"
+                        onMouseClicked="#onGetButtonClicked"
+                        text="Get Comment(s)"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="3"
+                        GridPane.halignment="RIGHT">
+                    <padding>
+                        <Insets top="5" bottom="5" left="5" right="5" />
+                    </padding>
+                </Button>
 
-</GridPane>
+                <!-- Youtube Comment List -->
+                <ListView fx:id="commentListView" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+
+            </children>
+
+        </GridPane>
+    </StackPane>
+
+    <!-- Bottom Layout -->
+    <StackPane maxHeight="300">
+        <TextArea fx:id="outputTextArea" editable="false" />
+    </StackPane>
+
+</SplitPane>
+
+
