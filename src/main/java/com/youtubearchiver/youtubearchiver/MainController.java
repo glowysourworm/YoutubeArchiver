@@ -12,6 +12,14 @@ import YoutubeArchiverDatabase.Utility.YoutubeCommentRunner;
 import YoutubeArchiverDatabase.Utility.YoutubeVideoRunner;
 
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.BooleanPropertyBase;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -34,6 +42,7 @@ public class MainController
 {
     // UI Elements (main-view.fxml)
     @FXML private TextField youtubeURLText;
+    @FXML private Button searchButton;
     @FXML private ListView<String> videoListView;
     @FXML private ListView<YoutubeComment> commentListView;
     @FXML private TextArea outputTextArea;
@@ -48,14 +57,24 @@ public class MainController
     protected Configuration configuration;
 
     // Async Blocking
-    protected boolean running;
+    private SimpleBooleanProperty running;
 
     public MainController()
     {
         // Must wait for fxml code to compile (see @FXML initialize)
 
         // Async Blocking:  The long running actions are for the shell commands
-        this.running = false;
+        this.running = new SimpleBooleanProperty();
+        this.setRunning(false);
+    }
+
+    public boolean getRunning()
+    {
+        return this.running.get();
+    }
+    public void setRunning(boolean value)
+    {
+        this.running.set(value);
     }
 
     /// Sets application configuration - must be done during startup; and before user gets
@@ -77,6 +96,9 @@ public class MainController
         // Apply Data Source
         this.videoListView.setItems(this.videoListSource);
         this.commentListView.setItems(this.commentListSource);
+
+        // Enable / Disable Run Button
+        this.searchButton.disableProperty().bind(this.running);
 
         // Output Log: Append text messages from the log
         EventAggregator.GetEvent(LogMessageEvent.class).Subscribe(message ->
@@ -132,14 +154,14 @@ public class MainController
     @FXML
     protected void onSearchButtonClicked()
     {
-        if (this.running)
+        if (this.getRunning())
             return;
 
         if (this.youtubeURLText.getText().isBlank())
             return;
 
         // Async Blocker
-        this.running = true;
+        this.setRunning(true);
 
         var videoId = this.youtubeURLText.getText();
         var videoResult = new AtomicReference<YoutubeVideoDownloaderMetadata>();
@@ -160,19 +182,26 @@ public class MainController
                 commentResult.set(ExecuteCommentsDownload(videoResult.get().channel_id, videoId));
             }
 
-            return true;
+            return commentResult.get() != null;
 
         }).thenAccept((result) ->
         {
             // Populate Result Comments
-            Platform.runLater(() ->
+            if (result)
             {
-                if (commentResult.get() != null)
+                Platform.runLater(() ->
                 {
                     this.commentListSource.clear();
                     this.commentListSource.addAll(commentResult.get());
-                }
-            });
+
+                    this.setRunning(false);
+                });
+            }
+
+            else
+            {
+                this.setRunning(false);
+            }
         });
     }
 

@@ -20,7 +20,7 @@
         <SplitPane>
 
             <!-- Top Left Layout -->
-            <StackPane maxWidth="600" minWidth="360">
+            <StackPane maxWidth="600" minWidth="360" prefWidth="360">
                 <GridPane>
 
                     <columnConstraints>
