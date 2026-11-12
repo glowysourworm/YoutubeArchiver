@@ -6,29 +6,19 @@ import YoutubeArchiverDatabase.Event.LogMessageEvent;
 import YoutubeArchiverDatabase.Logging.LogMessage;
 import YoutubeArchiverDatabase.Model.YoutubeComment;
 import YoutubeArchiverDatabase.Logging.SimpleLogger;
+import YoutubeArchiverDatabase.Model.YoutubeVideo;
 import YoutubeArchiverDatabase.Utility.ApplicationHelpers;
 import YoutubeArchiverDatabase.Utility.UtilityModel.YoutubeVideoDownloaderMetadata;
 import YoutubeArchiverDatabase.Utility.YoutubeCommentRunner;
 import YoutubeArchiverDatabase.Utility.YoutubeVideoRunner;
 
+import com.youtubearchiver.youtubearchiver.Model.YoutubeVideoListCell;
 import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.BooleanPropertyBase;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
+import javafx.scene.control.*;
 import org.controlsfx.control.StatusBar;
 
 import java.util.concurrent.*;
@@ -36,20 +26,19 @@ import java.util.concurrent.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Supplier;
 
 public class MainController
 {
     // UI Elements (main-view.fxml)
     @FXML private TextField youtubeURLText;
     @FXML private Button searchButton;
-    @FXML private ListView<String> videoListView;
+    @FXML private ListView<YoutubeVideo> videoListView;
     @FXML private ListView<YoutubeComment> commentListView;
     @FXML private TextArea outputTextArea;
     @FXML private StatusBar statusBar;
 
     // Data Sources
-    protected ObservableList<String> videoListSource;
+    protected ObservableList<YoutubeVideo> videoListSource;
     protected ObservableList<YoutubeComment> commentListSource;
     protected int textLineCounter;
 
@@ -57,7 +46,7 @@ public class MainController
     protected Configuration configuration;
 
     // Async Blocking
-    private SimpleBooleanProperty running;
+    private final SimpleBooleanProperty running;
 
     public MainController()
     {
@@ -89,13 +78,16 @@ public class MainController
     protected void initialize()
     {
         // Create ObservableList<> implementation from ArrayList<> (assuming their bindings are already implemented)
-        this.videoListSource = FXCollections.observableList(new ArrayList<String>());
+        this.videoListSource = FXCollections.observableList(new ArrayList<YoutubeVideo>());
         this.commentListSource = FXCollections.observableList(new ArrayList<YoutubeComment>());
         this.textLineCounter = 0;
 
         // Apply Data Source
         this.videoListView.setItems(this.videoListSource);
         this.commentListView.setItems(this.commentListSource);
+
+        // Custom ListView Cells
+        this.videoListView.setCellFactory((listView) -> new YoutubeVideoListCell());
 
         // Enable / Disable Run Button
         this.searchButton.disableProperty().bind(this.running);
@@ -177,6 +169,17 @@ public class MainController
             if (videoResult.get() != null)
             {
                 // TODO:  Load results into the database
+
+                // TODO: REMOVE THIS AND FINISH DATABASE PORTION
+                Platform.runLater(() ->
+                {
+                    var youtubeVideo = new YoutubeVideo();
+
+                    youtubeVideo.setImageURL(videoResult.get().thumbnail);
+                    youtubeVideo.setTitle(videoResult.get().title);
+
+                    this.videoListSource.add(youtubeVideo);
+                });
 
                 // -> youtube-comment-downloader (channelId, videoId)
                 commentResult.set(ExecuteCommentsDownload(videoResult.get().channel_id, videoId));

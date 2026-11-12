@@ -55,14 +55,14 @@ public class MainApplication extends Application
         //
 
         // Redirect System.out to ILogger Info level
-        System.setOut(new PrintStream(
-                new SimpleOutputStream(ApplicationHelpers.GetLogger(), LogLevel.Info), true)
-        );
-
-        // Redirect System.err to ILogger Error level
-        System.setErr(new PrintStream(
-                new SimpleOutputStream(ApplicationHelpers.GetLogger(), LogLevel.Error), true)
-        );
+//        System.setOut(new PrintStream(
+//                new SimpleOutputStream(ApplicationHelpers.GetLogger(), LogLevel.Info), true)
+//        );
+//
+//        // Redirect System.err to ILogger Error level
+//        System.setErr(new PrintStream(
+//                new SimpleOutputStream(ApplicationHelpers.GetLogger(), LogLevel.Error), true)
+//        );
 
         // Event Aggregator:  Experimenting with event aggregator pattern.. The observable
         //                    pattern will work here as well.
