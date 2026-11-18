@@ -6,7 +6,7 @@ import YoutubeArchiverDatabase.Event.LogMessageEvent;
 import YoutubeArchiverDatabase.Logging.LogLevel;
 import YoutubeArchiverDatabase.Logging.LogMessage;
 import YoutubeArchiverDatabase.Utility.ApplicationHelpers;
-import com.youtubearchiver.youtubearchiver.Event.YoutubeDownloaderCompleteEvent;
+import com.youtubearchiver.youtubearchiver.Event.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -67,7 +67,13 @@ public class MainApplication extends Application
         //                    pattern will work here as well.
         //
         EventAggregator.RegisterEvent(new LogMessageEvent());
-        EventAggregator.RegisterEvent(new YoutubeDownloaderCompleteEvent());
+        EventAggregator.RegisterEvent(new YoutubeAudioDownloadCompleteEvent());
+        EventAggregator.RegisterEvent(new YoutubeChannelVideoListCompleteEvent());
+        EventAggregator.RegisterEvent(new YoutubeVideoCommentsCompleteEvent());
+        EventAggregator.RegisterEvent(new YoutubeVideoDescriptionCompleteEvent());
+        EventAggregator.RegisterEvent(new YoutubeVideoDownloadCompleteEvent());
+        EventAggregator.RegisterEvent(new YoutubeVideoMetadataCompleteEvent());
+        EventAggregator.RegisterEvent(new YoutubeVideoSubtitlesCompleteEvent());
 
         // *** Log4j Initialization Complete ***
 

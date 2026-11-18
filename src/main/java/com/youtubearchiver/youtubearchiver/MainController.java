@@ -6,13 +6,17 @@ import YoutubeArchiverDatabase.Event.LogMessageEvent;
 import YoutubeArchiverDatabase.Model.YoutubeComment;
 import YoutubeArchiverDatabase.Model.YoutubeVideo;
 import YoutubeArchiverDatabase.Utility.ApplicationHelpers;
+import YoutubeArchiverDatabase.Utility.UtilityModel.YoutubeDownloader.Comments;
+import YoutubeArchiverDatabase.Utility.UtilityModel.YoutubeDownloader.Subtitles;
+import YoutubeArchiverDatabase.Utility.UtilityModel.YoutubeDownloader.YoutubeDownloaderMetadata;
 import YoutubeArchiverDatabase.Utility.UtilityModel.YoutubeDownloader.YoutubeDownloaderRunType;
 import com.youtubearchiver.youtubearchiver.DataModel.YoutubeDownloaderRequest;
 import com.youtubearchiver.youtubearchiver.DataModel.YoutubeDownloaderResponse;
-import com.youtubearchiver.youtubearchiver.Event.YoutubeDownloaderCompleteEvent;
-import com.youtubearchiver.youtubearchiver.Service.YoutubeArchiverService;
+import com.youtubearchiver.youtubearchiver.Event.*;
+import com.youtubearchiver.youtubearchiver.Service.YoutubeChannelService;
 import com.youtubearchiver.youtubearchiver.UIModel.YoutubeFunctionSelectionConverter;
 import com.youtubearchiver.youtubearchiver.UIModel.YoutubeVideoListCell;
+import com.youtubearchiver.youtubearchiver.Utility.FXApplicationHelpers;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -23,6 +27,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.controlsfx.control.StatusBar;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,6 +45,10 @@ public class MainController
     @FXML private TextArea outputTextArea;
     @FXML private StatusBar statusBar;
 
+    // Constants
+    private final String YOUTUBE_VIDEO_URL = "Youtube Video Url / Id";
+    private final String YOUTUBE_CHANNEL_URL = "Youtube Channel Url / Id";
+
     // Data Sources
     protected ObservableList<YoutubeVideo> videoListSource;
     protected ObservableList<YoutubeComment> commentListSource;
@@ -51,7 +60,7 @@ public class MainController
     protected Configuration configuration;
 
     // Services
-    protected final YoutubeArchiverService mainService;
+    protected final YoutubeChannelService mainService;
 
     // Async Blocking
     private final SimpleBooleanProperty running;
@@ -64,13 +73,13 @@ public class MainController
         // Must wait for fxml code to compile (see @FXML initialize)
 
         // Services
-        this.mainService = new YoutubeArchiverService();
+        this.mainService = new YoutubeChannelService();
 
         // Async Blocking:  The long running actions are for the shell commands
         this.running = new SimpleBooleanProperty();
         this.setRunning(false);
 
-        this.youtubeFunctionText = new SimpleStringProperty("Youtube URL");
+        this.youtubeFunctionText = new SimpleStringProperty(YOUTUBE_VIDEO_URL);
         this.youtubeFunctionSelected = new SimpleObjectProperty<>();
     }
 
@@ -130,7 +139,7 @@ public class MainController
 
             if (newValue == null)
             {
-                this.youtubeFunctionText.set("Youtube Video URL / Id");
+                this.youtubeFunctionText.set(YOUTUBE_VIDEO_URL);
                 return;
             }
             switch (newValue)
@@ -141,10 +150,10 @@ public class MainController
                 case VideoSubtitleList:
                 case VideoDownload:
                 case VideoAudioDownload:
-                    this.youtubeFunctionText.set("Youtube Video URL / Id");
+                    this.youtubeFunctionText.set(YOUTUBE_VIDEO_URL);
                     break;
                 case ChannelVideoList:
-                    this.youtubeFunctionText.set("Youtube Channel URL / Id");
+                    this.youtubeFunctionText.set(YOUTUBE_CHANNEL_URL);
                     break;
                 default:
                     throw new EnumConstantNotPresentException(YoutubeDownloaderRunType.class, newValue.toString());
@@ -157,13 +166,42 @@ public class MainController
         // Enable / Disable Run Button
         this.executeButton.disableProperty().bind(this.running);
 
-        // Youtube Downloader Event: Route the downloader events back to this class' handler
-        EventAggregator.GetEvent(YoutubeDownloaderCompleteEvent.class).Subscribe(response ->
+        // Youtube Downloader Events: Route the downloader events back to this class' handler
+        EventAggregator.GetEvent(YoutubeAudioDownloadCompleteEvent.class)
+                       .Subscribe(response ->
         {
             // -> Main Thread
-            Platform.runLater(() -> {
-                OnYoutubeServiceResponse(response);
-            });
+            FXApplicationHelpers.EnsureMainThread(this::OnAudioDownloaded, response);
+        });
+        EventAggregator.GetEvent(YoutubeChannelVideoListCompleteEvent.class)
+                       .Subscribe(response ->
+        {
+            // -> Main Thread
+            FXApplicationHelpers.EnsureMainThread(this::OnChannelVideoListDownloaded, response);
+        });
+        EventAggregator.GetEvent(YoutubeVideoCommentsCompleteEvent.class)
+                       .Subscribe(response ->
+        {
+            // -> Main Thread
+            FXApplicationHelpers.EnsureMainThread(this::OnVideoCommentsDownloaded, response);
+        });
+        EventAggregator.GetEvent(YoutubeVideoDescriptionCompleteEvent.class)
+                       .Subscribe(response ->
+        {
+            // -> Main Thread
+            FXApplicationHelpers.EnsureMainThread(this::OnVideoDescriptionDownloaded, response);
+        });
+        EventAggregator.GetEvent(YoutubeVideoMetadataCompleteEvent.class)
+                       .Subscribe(response ->
+        {
+            // -> Main Thread
+            FXApplicationHelpers.EnsureMainThread(this::OnVideoMetadataDownloaded, response);
+        });
+        EventAggregator.GetEvent(YoutubeVideoSubtitlesCompleteEvent.class)
+                       .Subscribe(response ->
+        {
+            // -> Main Thread
+            FXApplicationHelpers.EnsureMainThread(this::OnVideoSubtitlesDownloaded, response);
         });
 
         // Output Log: Append text messages from the log
@@ -199,6 +237,7 @@ public class MainController
         {
             appendLogMessage(ApplicationHelpers.GetLogger().FormatMessage(message));
         });
+
     }
 
     private void appendLogMessage(String message)
@@ -237,22 +276,7 @@ public class MainController
            this.mainService.ExecuteRequest(CreateYoutubeDownloaderRequest());
         });
     }
-
-    protected void OnYoutubeServiceResponse(YoutubeDownloaderResponse response)
-    {
-        // This must be forwarded to the main thread
-        if (!Platform.isFxApplicationThread())
-        {
-            Platform.runLater(() ->
-            {
-                ExecuteYoutubeResponse(response);
-            });
-        }
-        else
-            ExecuteYoutubeResponse(response);
-    }
-
-    protected void ExecuteYoutubeResponse(YoutubeDownloaderResponse response)
+    private <T> boolean HandleCompletedServiceExecution(YoutubeDownloaderResponse<T> response) throws IllegalStateException
     {
         // Async Blocker
         if (!this.getRunning())
@@ -263,32 +287,41 @@ public class MainController
 
         // Check Success / Failure
         if (!response.result)
-        {
+            return false;
+
+        return true;
+    }
+    private void OnAudioDownloaded(YoutubeDownloaderResponse<Path> response)
+    {
+        if (!HandleCompletedServiceExecution(response))
             return;
-        }
 
-        switch (response.savedRequest.runType)
-        {
-            case VideoMetadata:
-            case VideoComments:
-            case VideoDescription:
-            case VideoSubtitleList:
-            case VideoDownload:
-            case VideoAudioDownload:
-            {
 
-            }
-            break;
-            case ChannelVideoList:
-            {
-                var result = (List<YoutubeVideo>)response.payload;
-                this.videoListSource.clear();
-                this.videoListSource.addAll(result);
-            }
-            break;
-            default:
-                throw new EnumConstantNotPresentException(YoutubeDownloaderRunType.class, response.savedRequest.runType.toString());
-        }
+    }
+    private void OnVideoSubtitlesDownloaded(YoutubeDownloaderResponse<List<Subtitles>> response)
+    {
+        if (!HandleCompletedServiceExecution(response))
+            return;
+    }
+    private void OnVideoMetadataDownloaded(YoutubeDownloaderResponse<YoutubeDownloaderMetadata> response)
+    {
+        if (!HandleCompletedServiceExecution(response))
+            return;
+    }
+    private void OnVideoDescriptionDownloaded(YoutubeDownloaderResponse<String> response)
+    {
+        if (!HandleCompletedServiceExecution(response))
+            return;
+    }
+    private void OnVideoCommentsDownloaded(YoutubeDownloaderResponse<List<Comments>> response)
+    {
+        if (!HandleCompletedServiceExecution(response))
+            return;
+    }
+    private void OnChannelVideoListDownloaded(YoutubeDownloaderResponse<List<String>> response)
+    {
+        if (!HandleCompletedServiceExecution(response))
+            return;
     }
 
     protected YoutubeDownloaderRequest CreateYoutubeDownloaderRequest()
@@ -296,8 +329,9 @@ public class MainController
         var request = new YoutubeDownloaderRequest();
         var urlOrId = this.youtubeURLText.getText();
 
-        request.videoId = this.youtubeFunctionSelected.get() == YoutubeDownloaderRunType.ChannelVideoList ? null : urlOrId;
-        request.channelId = this.youtubeFunctionSelected.get() == YoutubeDownloaderRunType.ChannelVideoList ? urlOrId : null;
+        // Dual use text box (just to show.. this will likely get expanded)
+        request.videoId = this.youtubeFunctionSelected.get() == YoutubeDownloaderRunType.ChannelVideoList ? urlOrId : urlOrId;
+        request.channelId = this.youtubeFunctionSelected.get() == YoutubeDownloaderRunType.ChannelVideoList ? urlOrId : urlOrId;
         request.runType = this.youtubeFunctionSelected.get();
 
         return request;

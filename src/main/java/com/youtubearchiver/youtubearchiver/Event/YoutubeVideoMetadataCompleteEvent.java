@@ -1,0 +1,9 @@
+package com.youtubearchiver.youtubearchiver.Event;
+
+import YoutubeArchiverDatabase.Event.RegisterableEvent;
+import YoutubeArchiverDatabase.Utility.UtilityModel.YoutubeDownloader.YoutubeDownloaderMetadata;
+import com.youtubearchiver.youtubearchiver.DataModel.YoutubeDownloaderResponse;
+
+public class YoutubeVideoMetadataCompleteEvent extends RegisterableEvent<YoutubeDownloaderResponse<YoutubeDownloaderMetadata>>
+{
+}
