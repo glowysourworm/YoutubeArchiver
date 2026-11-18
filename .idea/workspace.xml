@@ -6,13 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ed2043e7-25b0-429f-9e3e-40fb6f1d28e5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/DataModel/YoutubeDownloaderResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/DataModel/YoutubeDownloaderResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/Event/YoutubeDownloaderCompleteEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/Event/YoutubeVideoDownloadCompleteEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/Service/YoutubeArchiverService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/Service/YoutubeChannelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/YoutubeCommentRunner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/YoutubeAudioDownloadRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/YoutubeAudioDownloadRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/YoutubeDownloaderRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/YoutubeDownloaderRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/YoutubeVideoDownloadRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/YoutubeVideoDownloadRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/YoutubeVideoSubtitlesRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/YoutubeVideoSubtitlesRunner.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +35,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../YoutubeArchiverDatabase" />
   </component>
   <component name="JsbtTreeLayoutManager">
     <layout place="tools.popupGrunt">
@@ -54,60 +52,60 @@
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="4.3206113144790344E-245" />
-      <entry key="S2" value="1.165076298444706E-61" />
-      <entry key="S5" value="6.4534997076249165E-25" />
-      <entry key="S10" value="1.4492689333374625E-12" />
-      <entry key="S30" value="5.208110849047612E-4" />
-      <entry key="S60" value="0.09652116860206532" />
-      <entry key="M2" value="1.6182924943286399" />
-      <entry key="M5" value="13.702319705439534" />
-      <entry key="M10" value="36.76788626058617" />
-      <entry key="M15" value="56.72384271389145" />
-      <entry key="M30" value="105.52828667340916" />
-      <entry key="H1" value="175.8991330661233" />
-      <entry key="H2" value="254.30352780487334" />
-      <entry key="H4" value="338.1621486257514" />
-      <entry key="D1" value="1460.5520874357817" />
-      <entry key="W1" value="5233.285170294217" />
+      <entry key="MS500" value="2.6845228382658306E-102" />
+      <entry key="S2" value="4.0477788398656784E-26" />
+      <entry key="S5" value="6.964448164045479E-11" />
+      <entry key="S10" value="8.345378900880998E-6" />
+      <entry key="S30" value="0.021250028315538787" />
+      <entry key="S60" value="0.2225654814236293" />
+      <entry key="M2" value="1.55965931655643" />
+      <entry key="M5" value="9.722783423610753" />
+      <entry key="M10" value="20.474132425124015" />
+      <entry key="M15" value="26.712265222609613" />
+      <entry key="M30" value="35.36675801660648" />
+      <entry key="H1" value="47.194649880283244" />
+      <entry key="H2" value="92.84219507025611" />
+      <entry key="H4" value="193.99380073825495" />
+      <entry key="D1" value="1320.34406533298" />
+      <entry key="W1" value="5178.859500232736" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0000000000000269" />
-      <entry key="MS500" value="1.0019326718316064" />
-      <entry key="S2" value="1.2457096867362871" />
-      <entry key="S5" value="1.962596065353012" />
-      <entry key="S10" value="2.930330514661161" />
-      <entry key="S30" value="4.554260856345418" />
-      <entry key="S60" value="5.678543986036234" />
-      <entry key="M2" value="7.914066323421189" />
-      <entry key="M5" value="15.045643596088004" />
-      <entry key="M10" value="27.03736347881117" />
-      <entry key="M15" value="39.22512221975094" />
-      <entry key="M30" value="76.28023421365673" />
-      <entry key="H1" value="139.2542675865496" />
-      <entry key="H2" value="214.26211698613" />
-      <entry key="H4" value="297.16926841057074" />
-      <entry key="D1" value="933.0605678885162" />
-      <entry key="W1" value="1998.492080371621" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0000000000585751" />
+      <entry key="S30" value="1.0009916712746274" />
+      <entry key="S60" value="1.0819163412558979" />
+      <entry key="M2" value="2.1768156597708934" />
+      <entry key="M5" value="9.45862999787812" />
+      <entry key="M10" value="18.98569870761735" />
+      <entry key="M15" value="24.54133605734799" />
+      <entry key="M30" value="32.30407984815163" />
+      <entry key="H1" value="42.32324110223929" />
+      <entry key="H2" value="81.35068771968078" />
+      <entry key="H4" value="172.09408694212513" />
+      <entry key="D1" value="856.3812015608656" />
+      <entry key="W1" value="2002.7370071099883" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.8345481356157718E-8" />
-      <entry key="MS500" value="0.028400143824594482" />
-      <entry key="S2" value="0.5024818795509375" />
-      <entry key="S5" value="1.352471705011251" />
-      <entry key="S10" value="2.433017893061907" />
-      <entry key="S30" value="4.284113822493389" />
-      <entry key="S60" value="5.604730957128044" />
-      <entry key="M2" value="9.41306232992445" />
-      <entry key="M5" value="28.65650919814786" />
-      <entry key="M10" value="63.723736774345326" />
-      <entry key="M15" value="95.87322574984034" />
-      <entry key="M30" value="181.74331357127147" />
-      <entry key="H1" value="315.100081124598" />
-      <entry key="H2" value="468.52689566230595" />
-      <entry key="H4" value="635.3047061383849" />
-      <entry key="D1" value="2393.592500780565" />
-      <entry key="W1" value="7231.767945577202" />
+      <entry key="MS100" value="1.2122711125940373E-4" />
+      <entry key="MS500" value="0.16470999396676747" />
+      <entry key="S2" value="0.6370594874017962" />
+      <entry key="S5" value="0.8349721597494678" />
+      <entry key="S10" value="0.9137761375997591" />
+      <entry key="S30" value="0.9923167008056207" />
+      <entry key="S60" value="1.2864432551717253" />
+      <entry key="M2" value="3.710914852695935" />
+      <entry key="M5" value="19.126517867521354" />
+      <entry key="M10" value="39.40266852243394" />
+      <entry key="M15" value="51.203917931478195" />
+      <entry key="M30" value="67.63795615782388" />
+      <entry key="H1" value="89.49696185423483" />
+      <entry key="H2" value="174.17520107508795" />
+      <entry key="H4" value="366.0708551083224" />
+      <entry key="D1" value="2176.706782564984" />
+      <entry key="W1" value="7181.58725194646" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -210,23 +208,63 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainController.java</url>
-          <line>322</line>
-          <option name="timeStamp" value="97" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/Service/YoutubeChannelService.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="98" />
+          <line>316</line>
+          <option name="timeStamp" value="101" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainController.java</url>
-          <line>179</line>
-          <option name="timeStamp" value="99" />
+          <line>326</line>
+          <option name="timeStamp" value="102" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainController.java</url>
-          <line>166</line>
-          <option name="timeStamp" value="100" />
+          <line>331</line>
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainController.java</url>
+          <line>336</line>
+          <option name="timeStamp" value="104" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainController.java</url>
+          <line>341</line>
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/YoutubeVideoSubtitlesRunner.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/YoutubeVideoSubtitlesRunner.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/YoutubeDownloaderRunner.java</url>
+          <line>284</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/YoutubeVideoDownloadRunner.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="110" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainController.java</url>
+          <line>321</line>
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Utility/YoutubeDownloaderRunner.java</url>
+          <line>323</line>
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainController.java</url>
+          <line>302</line>
+          <option name="timeStamp" value="116" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

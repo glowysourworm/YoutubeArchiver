@@ -167,36 +167,57 @@ public class MainController
         this.executeButton.disableProperty().bind(this.running);
 
         // Youtube Downloader Events: Route the downloader events back to this class' handler
+        //
+
+        // Audio Download
         EventAggregator.GetEvent(YoutubeAudioDownloadCompleteEvent.class)
                        .Subscribe(response ->
         {
             // -> Main Thread
             FXApplicationHelpers.EnsureMainThread(this::OnAudioDownloaded, response);
         });
+
+        // Video Download
+        EventAggregator.GetEvent(YoutubeVideoDownloadCompleteEvent.class)
+                       .Subscribe(response ->
+        {
+            // -> Main Thread
+            FXApplicationHelpers.EnsureMainThread(this::OnVideoDownloaded, response);
+        });
+
+        // Channel Video List
         EventAggregator.GetEvent(YoutubeChannelVideoListCompleteEvent.class)
                        .Subscribe(response ->
         {
             // -> Main Thread
             FXApplicationHelpers.EnsureMainThread(this::OnChannelVideoListDownloaded, response);
         });
+
+        // Comments
         EventAggregator.GetEvent(YoutubeVideoCommentsCompleteEvent.class)
                        .Subscribe(response ->
         {
             // -> Main Thread
             FXApplicationHelpers.EnsureMainThread(this::OnVideoCommentsDownloaded, response);
         });
+
+        // Description
         EventAggregator.GetEvent(YoutubeVideoDescriptionCompleteEvent.class)
                        .Subscribe(response ->
         {
             // -> Main Thread
             FXApplicationHelpers.EnsureMainThread(this::OnVideoDescriptionDownloaded, response);
         });
+
+        // Metadata
         EventAggregator.GetEvent(YoutubeVideoMetadataCompleteEvent.class)
                        .Subscribe(response ->
         {
             // -> Main Thread
             FXApplicationHelpers.EnsureMainThread(this::OnVideoMetadataDownloaded, response);
         });
+
+        // Subtitles
         EventAggregator.GetEvent(YoutubeVideoSubtitlesCompleteEvent.class)
                        .Subscribe(response ->
         {
@@ -295,8 +316,11 @@ public class MainController
     {
         if (!HandleCompletedServiceExecution(response))
             return;
-
-
+    }
+    private void OnVideoDownloaded(YoutubeDownloaderResponse<Path> response)
+    {
+        if (!HandleCompletedServiceExecution(response))
+            return;
     }
     private void OnVideoSubtitlesDownloaded(YoutubeDownloaderResponse<List<Subtitles>> response)
     {
