@@ -1,7 +1,6 @@
-package com.youtubearchiver.youtubearchiver.Model;
+package com.youtubearchiver.youtubearchiver.UIModel;
 
 import YoutubeArchiverDatabase.Model.YoutubeVideo;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;

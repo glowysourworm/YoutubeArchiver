@@ -5,8 +5,8 @@ import YoutubeArchiverDatabase.Event.EventAggregator;
 import YoutubeArchiverDatabase.Event.LogMessageEvent;
 import YoutubeArchiverDatabase.Logging.LogLevel;
 import YoutubeArchiverDatabase.Logging.LogMessage;
-import YoutubeArchiverDatabase.Logging.SimpleOutputStream;
 import YoutubeArchiverDatabase.Utility.ApplicationHelpers;
+import com.youtubearchiver.youtubearchiver.Event.YoutubeDownloaderCompleteEvent;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,7 +18,6 @@ import tools.jackson.databind.ObjectMapper;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -68,6 +67,7 @@ public class MainApplication extends Application
         //                    pattern will work here as well.
         //
         EventAggregator.RegisterEvent(new LogMessageEvent());
+        EventAggregator.RegisterEvent(new YoutubeDownloaderCompleteEvent());
 
         // *** Log4j Initialization Complete ***
 

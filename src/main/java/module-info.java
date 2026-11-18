@@ -11,7 +11,14 @@ module com.youtubearchiver.youtubearchiver
     requires org.hibernate.orm.core;
     requires tools.jackson.databind;
     requires org.apache.httpcomponents.httpcore;
+    requires jsr305;
+    requires com.google.api.services.youtube;
 
     opens com.youtubearchiver.youtubearchiver to javafx.fxml;
+
     exports com.youtubearchiver.youtubearchiver;
+    exports com.youtubearchiver.youtubearchiver.DataModel;
+    exports com.youtubearchiver.youtubearchiver.Event;
+    exports com.youtubearchiver.youtubearchiver.Service;
+    exports com.youtubearchiver.youtubearchiver.UIModel;
 }
