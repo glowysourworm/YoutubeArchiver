@@ -1,0 +1,54 @@
+Youtube Archiver Design
+-----------------------
+
+Primary Goals:
+
+	- Open Source (free) Youtube Metadata Service
+	- Google API (quota) Youtube Service (option)
+	- Database:
+		- Channel Metadata
+		- Video Metadata
+		- Playlist Metadata
+		- User Metadata
+		- Comment Metadata
+
+		- Local Comment (attachments):  Any use of these will be to attach to Youtube entities
+		- Local User Grouping
+		- Local User Flagging
+		- Youtube Comment History
+		- Youtube Video History
+
+		* Soft Deletes
+		* Video / Audio File Tracking
+
+	- Search / Filter Features
+		- Users:  Quick Comment Searches; Local Comments attached; User Groups; malicious users
+		- Comments:  Textual Search; Historical Search; Malicious / Flagged Comments; Comments with local comments
+		- Videos: Textual Search; Historical Search
+		- Channels:  Textual Search; Historical Search
+
+	- Google API:
+		- Quota Estimates
+		- Quota Query (Google Cloud Service)
+		- Configurable On / Off to protect data usage
+
+Visualization:
+
+	- Database Sets:  Tree of database tables available for entities
+	- Local Storage:  Youtube Data Directory (with Disk Usage)
+
+	- Channel: Single List View (for searching) -> (Video Centric / User Centric)
+
+		- Video List:  List View
+		- Comment List:  Tree View (for selected video)
+
+		- User List:  List View
+		- Comment List:  Tree View (for selected user)
+
+	- Video: Single List View (for searching)
+	- User:  Single List View (for searching)
+	- User Group:  (same)
+	- Comment / Local Comment:  Single List View (for searching); Popup (for editing)
+
+	- Console:  "Terminal" output window (bottom dock)
+	- Video Viewer:  Viewing / Listening to product files (audio / video)	
