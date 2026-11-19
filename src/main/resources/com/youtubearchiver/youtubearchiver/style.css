@@ -4,3 +4,16 @@
 .hbox {
     -fx-spacing: 5.0;
 }
+
+.tree-cell
+{
+    /* Couldn't get rid of disclosure node's indent */
+    -fx-indent: 0;
+
+    /* This is basically for documentation.. Some of these aren't consistent in java docs. */
+    -fx-graphic-text-gap: 3px;
+
+    /* NOT DOCUMENTED */
+    /* -fx-background-insets: 5px; */
+    /* -fx-border-insets: 10px 10px 10px 10px; */
+}

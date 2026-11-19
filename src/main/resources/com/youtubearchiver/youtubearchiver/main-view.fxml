@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets.*?>
-
-<?import javafx.geometry.Insets?>
-
-<?import org.controlsfx.control.StatusBar?>
-
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import org.kordamp.ikonli.Ikonli?>
 <SplitPane xmlns="http://javafx.com/javafx/8"
            xmlns:fx="http://javafx.com/fxml/1"
            stylesheets="@style.css"
+           fx:id="mainSplitPane"
            fx:controller="com.youtubearchiver.youtubearchiver.MainController"
            orientation="VERTICAL">
 
@@ -44,9 +42,26 @@
     </StackPane>
 
     <!-- Bottom Layout -->
-    <StackPane  maxHeight="500" minHeight="200">
-        <fx:include source="output-view.fxml" />
-    </StackPane>
+    <VBox fx:id="bottomPane" maxHeight="500" minHeight="32">
+
+        <!-- Terminal Tool Bar -->
+        <ToolBar fx:id="bottomToolbar" minHeight="32" maxHeight="32">
+
+            <!-- Force Align Right -->
+            <Pane HBox.hgrow="ALWAYS" />
+
+            <Button fx:id="toggleConsoleButton"
+                    onMouseClicked="#onToggleConsoleClicked"
+                    minHeight="24"
+                    maxHeight="24">
+                <!-- Initialize in code -->
+            </Button>
+        </ToolBar>
+
+        <!-- Terminal Output -->
+        <fx:include fx:id="outputView" source="output-view.fxml" VBox.vgrow="ALWAYS" />
+
+    </VBox>
 
 </SplitPane>
 

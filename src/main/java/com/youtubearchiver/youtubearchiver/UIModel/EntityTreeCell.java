@@ -1,26 +1,61 @@
 package com.youtubearchiver.youtubearchiver.UIModel;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
-import javafx.scene.paint.Paint;
-import org.kordamp.ikonli.javafx.FontIcon;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import org.kordamp.ikonli.fontawesome.FontAwesome;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class EntityTreeCell extends TreeCell<EntityTreeCellData>
 {
-    private final FontIcon closedIcon = new  FontIcon(FontAwesome.DATABASE);
-    private final FontIcon openIcon = new  FontIcon(FontAwesome.DATABASE);
+    private final HBox closedIcon;
+    private final HBox openIcon;
+
+    private final Color closedFill = Color.color(0, 0, 0, 0.75);
+    private final Color openFill = Color.color(0, 0, 0, 0.50);
+    private final Color closedFillHover = Color.color(0.5, 0.5, 0.5, 0.75);
+    private final Color openFillHover = Color.color(0.8, 0.8, 0.8, 0.75);
+    private final Color closedStroke = Color.color(1, 1, 1, 0.75);
+    private final Color openStroke = Color.color(0.8, 0.8, 0.8, 0.75);
 
     public EntityTreeCell()
     {
-        closedIcon.setIconSize(12);
-        openIcon.setIconSize(12);
+        this.closedIcon = new HBox();
+        this.openIcon = new HBox();
 
-        closedIcon.setStroke(Paint.valueOf("#FF000000"));
-        openIcon.setStroke(Paint.valueOf("#FF000000"));
+        // Cell Margin
+        this.closedIcon.setPadding(new Insets(2));
+        this.openIcon.setPadding(new Insets(2));
 
-        closedIcon.setFill(Paint.valueOf("#DD0000FF"));
-        openIcon.setFill(Paint.valueOf("#DD00FF00"));
+        var closedGlyph = new FontIcon(FontAwesome.DATABASE);
+        var openGlyph = new FontIcon(FontAwesome.DATABASE);
+
+        closedGlyph.setIconSize(14);
+        openGlyph.setIconSize(14);
+
+        closedGlyph.setStroke(this.closedStroke);
+        openGlyph.setStroke(this.openStroke);
+
+        closedGlyph.setFill(this.closedFill);
+        openGlyph.setFill(this.openFill);
+
+        closedGlyph.setStrokeWidth(1);
+        openGlyph.setStrokeWidth(1);
+
+        // Mouse Event Styling
+        closedGlyph.setOnMouseEntered(event -> ((FontIcon)event.getTarget()).setFill(closedFillHover));
+        openGlyph.setOnMouseEntered(event -> ((FontIcon)event.getTarget()).setFill(openFillHover));
+
+        closedGlyph.setOnMouseClicked(event -> ((FontIcon)event.getTarget()).setFill(closedFillHover));
+        openGlyph.setOnMouseClicked(event -> ((FontIcon)event.getTarget()).setFill(openFillHover));
+
+        closedGlyph.setOnMouseExited(event -> ((FontIcon)event.getTarget()).setFill(closedFill));
+        openGlyph.setOnMouseExited(event -> ((FontIcon)event.getTarget()).setFill(openFill));
+
+        this.closedIcon.getChildren().add(closedGlyph);
+        this.openIcon.getChildren().add(openGlyph);
     }
 
     @Override
@@ -37,15 +72,18 @@ public class EntityTreeCell extends TreeCell<EntityTreeCellData>
         else
         {
             setText(item.name);
+            setGraphic(null);
+
             TreeItem<EntityTreeCellData> treeItem = getTreeItem();
 
-            if (treeItem != null && !treeItem.isLeaf())
+            if (!treeItem.isLeaf())
             {
                 setDisclosureNode(treeItem.isExpanded() ? openIcon : closedIcon);
             }
             else
             {
                 setDisclosureNode(null);
+                setGraphic(openIcon);
             }
         }
     }
