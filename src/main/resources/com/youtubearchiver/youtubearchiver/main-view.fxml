@@ -25,70 +25,18 @@
 
             <!-- Top Left Layout -->
             <StackPane maxWidth="600" minWidth="360" prefWidth="360">
-                <GridPane>
 
-                    <columnConstraints>
-                        <ColumnConstraints maxWidth="150" minWidth="150" prefWidth="150" />
-                        <ColumnConstraints hgrow="ALWAYS" fillWidth="true" />
-                        <ColumnConstraints maxWidth="80" minWidth="80" prefWidth="80" />
-                    </columnConstraints>
+                <!-- Entity Tree -->
+                <fx:include source="entity-view.fxml"  />
 
-                    <rowConstraints>
-                        <RowConstraints maxHeight="32.0" minHeight="32.0" />
-                        <RowConstraints maxHeight="32.0" minHeight="32.0" />
-                        <RowConstraints fillHeight="true" vgrow="ALWAYS" />
-                    </rowConstraints>
-
-                        <!-- Youtube Channel / Video URL -->
-                        <Label fx:id="youtubeFunctionLabel"
-                               prefHeight="32"
-                               GridPane.margin="$DefaultMargin">
-                        </Label>
-
-                        <TextField fx:id="youtubeURLText"
-                                   GridPane.columnIndex="1"
-                                   GridPane.columnSpan="2"
-                                   minWidth="200"
-                                   HBox.hgrow="ALWAYS"
-                                   GridPane.margin="$DefaultMargin">
-                        </TextField>
-
-                        <!-- Youtube Function Selector -->
-                        <ComboBox fx:id="youtubeFunctionComboBox"
-                                  maxWidth="Infinity"
-                                  GridPane.hgrow="ALWAYS"
-                                  GridPane.rowIndex="1"
-                                  GridPane.columnIndex="1"
-                                  GridPane.margin="$DefaultMargin">
-                        </ComboBox>
-
-                        <!-- Youtube Execute Button -->
-                        <Button fx:id="executeButton"
-                                GridPane.columnIndex="2"
-                                GridPane.rowIndex="1"
-                                GridPane.hgrow="ALWAYS"
-                                GridPane.halignment="CENTER"
-                                GridPane.margin="$DefaultMargin"
-                                maxWidth="Infinity"
-                                onMouseClicked="#onYoutubeExecuteClicked"
-                                text="Execute"
-                                disable="${running}">
-                        </Button>
-
-                        <!-- Youtube Channel's Video List -->
-                        <ListView fx:id="videoListView"
-                                  GridPane.rowIndex="2"
-                                  GridPane.columnSpan="3"
-                                  GridPane.margin="$DefaultMargin">
-                        </ListView>
-
-                </GridPane>
             </StackPane>
 
             <!-- Top Right Layout -->
             <StackPane>
-                <!-- Youtube Comment List -->
-                <ListView fx:id="commentListView"  />
+
+                <!-- Entity List -->
+                <ListView fx:id="entityListView"  />
+
             </StackPane>
 
         </SplitPane>
@@ -97,23 +45,7 @@
 
     <!-- Bottom Layout -->
     <StackPane  maxHeight="500" minHeight="200">
-        <GridPane>
-
-            <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS" />
-            </columnConstraints>
-
-            <rowConstraints>
-                <RowConstraints vgrow="ALWAYS" />
-                <RowConstraints maxHeight="24.0" minHeight="24.0" vgrow="NEVER" />
-            </rowConstraints>
-
-            <!-- Log Output -->
-            <TextArea fx:id="outputTextArea" editable="false" />
-
-            <!-- Status Bar -->
-            <StatusBar fx:id="statusBar" minHeight="24" maxHeight="24" GridPane.rowIndex="1" />
-        </GridPane>
+        <fx:include source="output-view.fxml" />
     </StackPane>
 
 </SplitPane>

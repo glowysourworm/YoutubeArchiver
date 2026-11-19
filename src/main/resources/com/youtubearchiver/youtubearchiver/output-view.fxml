@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.StatusBar?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.youtubearchiver.youtubearchiver.Controller.OutputController"
+            prefHeight="400.0" prefWidth="600.0">
+    <GridPane>
+
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS" />
+            <RowConstraints maxHeight="24.0" minHeight="24.0" vgrow="NEVER" />
+        </rowConstraints>
+
+        <!-- Log Output -->
+        <TextArea fx:id="outputTextArea" editable="false" />
+
+        <!-- Status Bar -->
+        <StatusBar fx:id="statusBar" minHeight="24" maxHeight="24" GridPane.rowIndex="1" />
+    </GridPane>
+</AnchorPane>

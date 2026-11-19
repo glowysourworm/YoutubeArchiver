@@ -15,7 +15,7 @@ import com.youtubearchiver.youtubearchiver.Event.*;
 import java.nio.file.Path;
 import java.util.List;
 
-public class YoutubeChannelService implements InitializableComponent<Configuration>
+public class YoutubeDownloaderService implements InitializableComponent<Configuration>
 {
     // Application Configuration
     private Configuration configuration;
@@ -34,7 +34,7 @@ public class YoutubeChannelService implements InitializableComponent<Configurati
     //                  request must be saved here.
     YoutubeDownloaderRequest currentRequest;
 
-    public YoutubeChannelService()
+    public YoutubeDownloaderService()
     {
 
     }

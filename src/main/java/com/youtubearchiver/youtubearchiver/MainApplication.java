@@ -67,6 +67,7 @@ public class MainApplication extends Application
         //                    pattern will work here as well.
         //
         EventAggregator.RegisterEvent(new LogMessageEvent());
+        EventAggregator.RegisterEvent(new YoutubeEntityResultEvent());
         EventAggregator.RegisterEvent(new YoutubeAudioDownloadCompleteEvent());
         EventAggregator.RegisterEvent(new YoutubeChannelVideoListCompleteEvent());
         EventAggregator.RegisterEvent(new YoutubeVideoCommentsCompleteEvent());

@@ -13,12 +13,18 @@ module com.youtubearchiver.youtubearchiver
     requires org.apache.httpcomponents.httpcore;
     requires jsr305;
     requires com.google.api.services.youtube;
+    requires java.naming;
+    requires org.kordamp.ikonli.core;
+    requires org.kordamp.ikonli.fontawesome;
 
     opens com.youtubearchiver.youtubearchiver to javafx.fxml;
+    opens com.youtubearchiver.youtubearchiver.Controller to javafx.fxml;
 
     exports com.youtubearchiver.youtubearchiver;
+    exports com.youtubearchiver.youtubearchiver.Controller;
     exports com.youtubearchiver.youtubearchiver.DataModel;
     exports com.youtubearchiver.youtubearchiver.Event;
     exports com.youtubearchiver.youtubearchiver.Service;
     exports com.youtubearchiver.youtubearchiver.UIModel;
+    exports com.youtubearchiver.youtubearchiver.Utility;
 }
