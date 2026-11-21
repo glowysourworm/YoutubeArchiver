@@ -3,43 +3,29 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
-<?import org.kordamp.ikonli.Ikonli?>
+
 <SplitPane xmlns="http://javafx.com/javafx/8"
            xmlns:fx="http://javafx.com/fxml/1"
            stylesheets="@style.css"
            fx:id="mainSplitPane"
-           fx:controller="com.youtubearchiver.youtubearchiver.MainController"
+           fx:controller="com.youtubearchiver.youtubearchiver.Controller.MainController"
            orientation="VERTICAL">
 
-    <fx:define>
-        <Insets fx:id="DefaultMargin" top="3" bottom="3" left="3" right="3" />
-    </fx:define>
-
     <!-- Top Layout -->
-    <StackPane>
+    <AnchorPane>
+        <TabPane fx:id="mainTabPane" tabClosingPolicy="ALL_TABS"
+                 AnchorPane.bottomAnchor="0"
+                 AnchorPane.topAnchor="0"
+                 AnchorPane.leftAnchor="0"
+                 AnchorPane.rightAnchor="0">
 
-        <SplitPane>
+            <!-- Entity Tab -->
+            <Tab closable="false" text="Local Database">
+                <fx:include source="entity-view.fxml" maxWidth="Infinity" maxHeight="Infinity" />
+            </Tab>
 
-            <!-- Top Left Layout -->
-            <StackPane maxWidth="600" minWidth="360" prefWidth="360">
-
-                <!-- Entity Tree -->
-                <fx:include source="entity-view.fxml"  />
-
-            </StackPane>
-
-            <!-- Top Right Layout -->
-            <StackPane>
-
-                <!-- Entity List -->
-                <ListView fx:id="entityListView"  />
-
-            </StackPane>
-
-        </SplitPane>
-
-    </StackPane>
+        </TabPane>
+    </AnchorPane>
 
     <!-- Bottom Layout -->
     <VBox fx:id="bottomPane" maxHeight="500" minHeight="32">

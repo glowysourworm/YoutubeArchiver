@@ -1,14 +1,11 @@
-package com.youtubearchiver.youtubearchiver;
+package com.youtubearchiver.youtubearchiver.Controller;
 
 import YoutubeArchiverDatabase.Configuration;
-import YoutubeArchiverDatabase.Model.YoutubeArchiverEntityBase;
-import com.youtubearchiver.youtubearchiver.Service.YoutubePrimaryEntityService;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import YoutubeArchiverDatabase.IYoutubeArchiverInitializer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -16,27 +13,20 @@ import javafx.scene.paint.Color;
 import org.kordamp.ikonli.fontawesome.FontAwesome;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainController
+public class MainController implements IYoutubeArchiverInitializer
 {
+    // Configuration
+    protected Configuration configuration;
+
     // UI Elements (main-view.fxml)
     @FXML private SplitPane mainSplitPane;
     @FXML private VBox bottomPane;
     @FXML private AnchorPane outputView;
     @FXML private Button toggleConsoleButton;
     @FXML private ToolBar bottomToolbar;
-    @FXML private ListView<YoutubeArchiverEntityBase> entityListView;
-
-    // Data Sources
-    protected ObservableList<YoutubeArchiverEntityBase> entityListSource;
-
-    // Configuration
-    protected Configuration configuration;
-
-    // Services
-    protected YoutubePrimaryEntityService entityService;
+    @FXML private TabPane mainTabPane;
 
     // UI Handling
     private boolean showingOutput;
@@ -52,23 +42,23 @@ public class MainController
     /// Sets application configuration - must be done during startup; and before user gets
     /// to the UI.
     /// @param configuration Primary (readonly configuration)
-    public void setConfiguration(final Configuration configuration)
+    public void Initialize(final Configuration configuration)
     {
         this.configuration = configuration;
+    }
 
-        // Services (Initializable Components)
-        this.entityService = new YoutubePrimaryEntityService(this.configuration);
+    /// Returns true if the component has already been initialized
+    ///
+    /// @return true / false indicating initialization
+    @Override
+    public boolean IsInitialized()
+    {
+        return this.configuration != null;
     }
 
     @FXML
     protected void initialize()
     {
-        // Create ObservableList<> implementation from ArrayList<> (assuming their bindings are already implemented)
-        this.entityListSource = FXCollections.observableList(new ArrayList<YoutubeArchiverEntityBase>());
-
-        // Apply Data Source
-        this.entityListView.setItems(this.entityListSource);
-
         // UI Handling
         this.dividerPosition = 0.0;
 

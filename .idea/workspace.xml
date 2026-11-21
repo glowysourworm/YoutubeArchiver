@@ -6,12 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="ed2043e7-25b0-429f-9e3e-40fb6f1d28e5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/UIModel/EntityTreeCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/UIModel/EntityTreeCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/Controller/EntityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/Controller/EntityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/Controller/OutputController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/Controller/OutputController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/Controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/Service/InitializableComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/Service/YoutubeDownloaderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/Service/YoutubeDownloaderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/Service/YoutubePrimaryEntityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/youtubearchiver/youtubearchiver/Service/YoutubePrimaryEntityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/youtubearchiver/youtubearchiver/entity-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/youtubearchiver/youtubearchiver/entity-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/youtubearchiver/youtubearchiver/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/youtubearchiver/youtubearchiver/main-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/youtubearchiver/youtubearchiver/output-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/youtubearchiver/youtubearchiver/output-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/youtubearchiver/youtubearchiver/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/youtubearchiver/youtubearchiver/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,8 +35,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -53,61 +58,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0000046826641575" />
-      <entry key="S5" value="1.007736239839241" />
-      <entry key="S10" value="1.1125164142446509" />
-      <entry key="S30" value="1.9151095392513704" />
-      <entry key="S60" value="2.6594348947661466" />
-      <entry key="M2" value="3.5653599525904007" />
-      <entry key="M5" value="6.53555444725312" />
-      <entry key="M10" value="16.145330581275672" />
-      <entry key="M15" value="31.971805115834083" />
-      <entry key="M30" value="87.40094683156781" />
-      <entry key="H1" value="165.71655597303098" />
-      <entry key="H2" value="237.47763330376048" />
-      <entry key="H4" value="306.99625697824285" />
-      <entry key="D1" value="1290.3779744542344" />
-      <entry key="W1" value="5444.55155819277" />
+      <entry key="MS100" value="8.163469075794648E-67" />
+      <entry key="MS500" value="6.05863724604961E-14" />
+      <entry key="S2" value="4.97986946094956E-4" />
+      <entry key="S5" value="0.05836904065488782" />
+      <entry key="S10" value="0.4210485758966862" />
+      <entry key="S30" value="2.122942009010926" />
+      <entry key="S60" value="3.7104670699038262" />
+      <entry key="M2" value="6.6468027823995115" />
+      <entry key="M5" value="17.404464198109295" />
+      <entry key="M10" value="37.548879280579726" />
+      <entry key="M15" value="59.22147250336477" />
+      <entry key="M30" value="125.50334097744835" />
+      <entry key="H1" value="235.6624004802529" />
+      <entry key="H2" value="362.0024971263893" />
+      <entry key="H4" value="480.8333815265903" />
+      <entry key="D1" value="1502.9866033124242" />
+      <entry key="W1" value="5678.868495084761" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.7979314656357866E-190" />
-      <entry key="MS500" value="1.1244874857875148E-38" />
-      <entry key="S2" value="3.256406827686499E-10" />
-      <entry key="S5" value="1.6035978402394164E-4" />
-      <entry key="S10" value="0.012663324367441716" />
-      <entry key="S30" value="0.2333474617958627" />
-      <entry key="S60" value="0.5297505736679538" />
-      <entry key="M2" value="1.3511239631215366" />
-      <entry key="M5" value="5.11433930916915" />
-      <entry key="M10" value="14.399438498938295" />
-      <entry key="M15" value="26.012026502048894" />
-      <entry key="M30" value="59.3049390932962" />
-      <entry key="H1" value="101.16497531739249" />
-      <entry key="H2" value="137.88587582227714" />
-      <entry key="H4" value="178.55619207185373" />
-      <entry key="D1" value="827.5114839165585" />
-      <entry key="W1" value="2282.728661877716" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000000000788558" />
+      <entry key="S2" value="1.0031220557208993" />
+      <entry key="S5" value="1.1337132519762614" />
+      <entry key="S10" value="1.5682973069018349" />
+      <entry key="S30" value="2.7275207262572243" />
+      <entry key="S60" value="3.7728904367841407" />
+      <entry key="M2" value="6.356745132875316" />
+      <entry key="M5" value="17.786797345385747" />
+      <entry key="M10" value="35.83097973675335" />
+      <entry key="M15" value="51.46165001952339" />
+      <entry key="M30" value="92.99127347648047" />
+      <entry key="H1" value="156.60433794038707" />
+      <entry key="H2" value="226.42563229578465" />
+      <entry key="H4" value="294.63324562108096" />
+      <entry key="D1" value="962.4085939975893" />
+      <entry key="W1" value="2437.030948065611" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.016064278541501033" />
-      <entry key="MS500" value="0.437695664847132" />
-      <entry key="S2" value="0.8133828333008782" />
-      <entry key="S5" value="0.9278773770033439" />
-      <entry key="S10" value="1.0802324307734328" />
-      <entry key="S30" value="2.125936774125631" />
-      <entry key="S60" value="3.173121908092562" />
-      <entry key="M2" value="4.893817010654078" />
-      <entry key="M5" value="11.613315495849223" />
-      <entry key="M10" value="30.496208973990754" />
-      <entry key="M15" value="57.924168723929576" />
-      <entry key="M30" value="146.63199778035886" />
-      <entry key="H1" value="266.81372521375005" />
-      <entry key="H2" value="375.3151603172621" />
-      <entry key="H4" value="485.5211061452152" />
-      <entry key="D1" value="2117.8694090162344" />
-      <entry key="W1" value="7727.269980511318" />
+      <entry key="MS100" value="7.903096847069187E-22" />
+      <entry key="MS500" value="6.019486740591126E-5" />
+      <entry key="S2" value="0.08906661599314666" />
+      <entry key="S5" value="0.500829883347824" />
+      <entry key="S10" value="1.4122867404911588" />
+      <entry key="S30" value="4.4052323281416035" />
+      <entry key="S60" value="7.1133230975602215" />
+      <entry key="M2" value="12.708372850473078" />
+      <entry key="M5" value="34.98337052793649" />
+      <entry key="M10" value="73.21110299499122" />
+      <entry key="M15" value="110.53166032913921" />
+      <entry key="M30" value="218.36672551960297" />
+      <entry key="H1" value="392.161177762183" />
+      <entry key="H2" value="588.3511938192391" />
+      <entry key="H4" value="775.4164961608819" />
+      <entry key="D1" value="2465.371377959225" />
+      <entry key="W1" value="8115.888609058586" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -122,32 +127,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.YoutubeArchiverDebug.executor": "Debug",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Backup/_Source/Git/YoutubeArchiver/src/main/resources",
-    "node.js.detected.package.jshint": "true",
-    "node.js.selected.package.jshint": "",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.33908045",
-    "settings.editor.selected.configurable": "preferences.sourceCode.JAVA"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.YoutubeArchiverDebug.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Backup/_Source/Git/YoutubeArchiver/src/main/resources&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.33908045&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.JAVA&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mariadb"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mariadb&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Backup\_Source\Git\YoutubeArchiver\src\main\resources" />

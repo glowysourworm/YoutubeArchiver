@@ -6,6 +6,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@style.css"
             fx:controller="com.youtubearchiver.youtubearchiver.Controller.OutputController"
             prefHeight="400.0" prefWidth="600.0">
     <GridPane AnchorPane.bottomAnchor="0"

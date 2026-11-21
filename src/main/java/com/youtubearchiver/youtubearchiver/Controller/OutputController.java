@@ -1,15 +1,20 @@
 package com.youtubearchiver.youtubearchiver.Controller;
 
+import YoutubeArchiverDatabase.Configuration;
 import YoutubeArchiverDatabase.Event.EventAggregator;
 import YoutubeArchiverDatabase.Event.LogMessageEvent;
 import YoutubeArchiverDatabase.Utility.ApplicationHelpers;
+import YoutubeArchiverDatabase.IYoutubeArchiverInitializer;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import org.controlsfx.control.StatusBar;
 
-public class OutputController
+public class OutputController implements IYoutubeArchiverInitializer
 {
+    // Configuration
+    protected Configuration configuration;
+
     @FXML private TextArea outputTextArea;
     @FXML private StatusBar statusBar;
 
@@ -18,6 +23,24 @@ public class OutputController
     public OutputController()
     {
 
+    }
+
+    /// Initializes the component with the application configuration
+    ///
+    /// @param configuration Application configuration
+    @Override
+    public void Initialize(Configuration configuration)
+    {
+        this.configuration = configuration;
+    }
+
+    /// Returns true if the component has already been initialized
+    ///
+    /// @return true / false indicating initialization
+    @Override
+    public boolean IsInitialized()
+    {
+        return this.configuration != null;
     }
 
     @FXML

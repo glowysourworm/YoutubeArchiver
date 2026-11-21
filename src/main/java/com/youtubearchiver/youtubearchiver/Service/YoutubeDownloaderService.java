@@ -11,11 +11,12 @@ import YoutubeArchiverDatabase.Utility.UtilityModel.YoutubeDownloader.YoutubeDow
 import com.youtubearchiver.youtubearchiver.DataModel.YoutubeDownloaderRequest;
 import com.youtubearchiver.youtubearchiver.DataModel.YoutubeDownloaderResponse;
 import com.youtubearchiver.youtubearchiver.Event.*;
+import YoutubeArchiverDatabase.IYoutubeArchiverInitializer;
 
 import java.nio.file.Path;
 import java.util.List;
 
-public class YoutubeDownloaderService implements InitializableComponent<Configuration>
+public class YoutubeDownloaderService implements IYoutubeArchiverInitializer
 {
     // Application Configuration
     private Configuration configuration;

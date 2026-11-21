@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@style.css"
+            fx:controller="com.youtubearchiver.youtubearchiver.Controller.ChannelController"
+            prefHeight="400.0" prefWidth="600.0">
+    <SplitPane>
+
+        <!-- Left Pane:  Video List -->
+        <ListView fx:id="videoListView" />
+
+        <!-- Right Pane:  Video Details (just some metadata fields for now) -->
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints minWidth="140" maxWidth="140" />
+                <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="32" maxHeight="32" />
+                <RowConstraints minHeight="32" maxHeight="32" />
+                <RowConstraints minHeight="32" maxHeight="32" />
+                <RowConstraints minHeight="32" maxHeight="32" />
+                <RowConstraints minHeight="32" maxHeight="32" />
+            </rowConstraints>
+
+            <Label text="Video Id" />
+            <Text text="{$selectedVideo.id}" GridPane.columnIndex="1" />
+
+        </GridPane>
+
+    </SplitPane>
+</AnchorPane>

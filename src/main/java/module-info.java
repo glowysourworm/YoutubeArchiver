@@ -16,6 +16,7 @@ module com.youtubearchiver.youtubearchiver
     requires java.naming;
     requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.fontawesome;
+    requires java.management;
 
     opens com.youtubearchiver.youtubearchiver to javafx.fxml;
     opens com.youtubearchiver.youtubearchiver.Controller to javafx.fxml;

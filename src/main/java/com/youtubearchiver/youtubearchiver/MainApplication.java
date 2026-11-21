@@ -144,7 +144,7 @@ public class MainApplication extends Application
     }
 
     @Override
-    public void start(Stage mainStage) throws IOException
+    public void start(Stage mainStage) throws Exception
     {
         // Initialization Result:  Can now be shown to the user
         if (this.initializationError)
@@ -158,20 +158,38 @@ public class MainApplication extends Application
             System.exit(1);
         }
 
+        // FXML Loader
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view.fxml"));
+
+        // Controller Factory / Configuration
+        ControllerFactory.SetConfiguration(this.configuration);
+
+        // -> Set Controller Factory
+        fxmlLoader.setControllerFactory(type ->
+        {
+            try
+            {
+                return ControllerFactory.CreateController(type);
+            }
+            catch (Exception e)
+            {
+                // This will contain the error detail. We need to throw
+                throw new IllegalStateException(e);
+            }
+        });
 
         // Load Control Tree (instantiates controllers)
         var parent = (Parent)fxmlLoader.load();
 
         // Returns main controller
-        var mainController = (MainController)fxmlLoader.getController();
+        //var mainController = (MainController)fxmlLoader.getController();
 
         // -> Set Configuration, Log Appender
-        mainController.setConfiguration(this.configuration);
+        //mainController.Initialize(this.configuration);
 
         // Create Scene
         this.mainScene = new Scene(parent, 800, 600);
-        mainStage.setTitle("Main View!");
+        mainStage.setTitle("Youtube Archiver");
         mainStage.setScene(this.mainScene);
         mainStage.setMinWidth(600);
         mainStage.setMinHeight(400);

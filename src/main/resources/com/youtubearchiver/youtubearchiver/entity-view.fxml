@@ -9,11 +9,46 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             stylesheets="@style.css"
-            fx:controller="com.youtubearchiver.youtubearchiver.Controller.EntityController"
-            prefHeight="400.0" prefWidth="600.0">
-    <TreeView fx:id="entityTreeView"
-              AnchorPane.bottomAnchor="0"
-              AnchorPane.topAnchor="0"
-              AnchorPane.leftAnchor="0"
-              AnchorPane.rightAnchor="0"/>
+            fx:controller="com.youtubearchiver.youtubearchiver.Controller.EntityController">
+
+
+    <SplitPane AnchorPane.bottomAnchor="0"
+               AnchorPane.topAnchor="0"
+               AnchorPane.leftAnchor="0"
+               AnchorPane.rightAnchor="0">
+
+        <!-- Top Left Layout -->
+        <AnchorPane maxWidth="600" minWidth="360" prefWidth="360">
+
+            <!-- Entity Tree -->
+            <TreeView fx:id="entityTreeView"
+                      AnchorPane.bottomAnchor="0"
+                      AnchorPane.topAnchor="0"
+                      AnchorPane.leftAnchor="0"
+                      AnchorPane.rightAnchor="0">
+                <contextMenu>
+                    <ContextMenu>
+                        <items>
+                            <MenuItem text="Get My Channel(s)" onAction="#getMyChannelsClicked" />
+                            <MenuItem text="Get Channel" onAction="#getChannelClicked" />
+                        </items>
+                    </ContextMenu>
+                </contextMenu>
+            </TreeView>
+
+        </AnchorPane>
+
+        <!-- Top Right Layout -->
+        <AnchorPane>
+
+            <!-- Entity List -->
+            <ListView fx:id="entityListView"
+                      AnchorPane.bottomAnchor="0"
+                      AnchorPane.topAnchor="0"
+                      AnchorPane.leftAnchor="0"
+                      AnchorPane.rightAnchor="0" />
+
+        </AnchorPane>
+
+    </SplitPane>
 </AnchorPane>
