@@ -28,4 +28,10 @@ module com.youtubearchiver.youtubearchiver
     exports com.youtubearchiver.youtubearchiver.Service;
     exports com.youtubearchiver.youtubearchiver.UIModel;
     exports com.youtubearchiver.youtubearchiver.Utility;
+    exports com.youtubearchiver.youtubearchiver.Dialog.Service;
+    exports com.youtubearchiver.youtubearchiver.Dialog.Model;
+    exports com.youtubearchiver.youtubearchiver.Dialog.Controller;
+    opens com.youtubearchiver.youtubearchiver.Dialog.Controller to javafx.fxml;
+    exports com.youtubearchiver.youtubearchiver.Controller.Interface;
+    opens com.youtubearchiver.youtubearchiver.Controller.Interface to javafx.fxml;
 }

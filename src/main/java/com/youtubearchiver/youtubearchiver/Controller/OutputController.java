@@ -4,13 +4,14 @@ import YoutubeArchiverDatabase.Configuration;
 import YoutubeArchiverDatabase.Event.EventAggregator;
 import YoutubeArchiverDatabase.Event.LogMessageEvent;
 import YoutubeArchiverDatabase.Utility.ApplicationHelpers;
-import YoutubeArchiverDatabase.IYoutubeArchiverInitializer;
+import com.youtubearchiver.youtubearchiver.Controller.Interface.IYoutubeArchiverController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 import org.controlsfx.control.StatusBar;
 
-public class OutputController implements IYoutubeArchiverInitializer
+public class OutputController implements IYoutubeArchiverController
 {
     // Configuration
     protected Configuration configuration;
@@ -41,6 +42,25 @@ public class OutputController implements IYoutubeArchiverInitializer
     public boolean IsInitialized()
     {
         return this.configuration != null;
+    }
+
+    /// Returns model object for this controller. This would be the root object needed by the
+    /// view. (TODO: Think of a way to handle templates for the model)
+    ///
+    /// @return The object (root) of the view's model
+    @Override
+    public Object GetModel()
+    {
+        return null;
+    }
+
+    /// Sets primary stage from the main application
+    ///
+    /// @param primaryStage Primary stage - owner of dialog windows
+    @Override
+    public void SetPrimaryStage(Stage primaryStage)
+    {
+
     }
 
     @FXML

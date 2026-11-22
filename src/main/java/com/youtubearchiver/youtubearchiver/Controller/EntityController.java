@@ -2,7 +2,9 @@ package com.youtubearchiver.youtubearchiver.Controller;
 
 import YoutubeArchiverDatabase.Configuration;
 import YoutubeArchiverDatabase.Model.YoutubeArchiverEntityBase;
-import YoutubeArchiverDatabase.IYoutubeArchiverInitializer;
+import com.youtubearchiver.youtubearchiver.Controller.Interface.IYoutubeArchiverController;
+import com.youtubearchiver.youtubearchiver.Dialog.Model.GetChannelDialogModel;
+import com.youtubearchiver.youtubearchiver.Dialog.Service.DialogService;
 import com.youtubearchiver.youtubearchiver.Service.YoutubeDownloaderService;
 import com.youtubearchiver.youtubearchiver.Service.YoutubePrimaryEntityService;
 import com.youtubearchiver.youtubearchiver.UIModel.EntityTreeCell;
@@ -14,10 +16,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class EntityController implements IYoutubeArchiverInitializer
+public class EntityController implements IYoutubeArchiverController
 {
     // Configuration
     private Configuration configuration;
@@ -40,6 +43,7 @@ public class EntityController implements IYoutubeArchiverInitializer
     // Services
     protected YoutubeDownloaderService youtubeDownloaderService;
     protected YoutubePrimaryEntityService youtubePrimaryEntityService;
+    protected DialogService dialogService;
 
     public EntityController()
     {
@@ -53,6 +57,16 @@ public class EntityController implements IYoutubeArchiverInitializer
     public void Initialize(Configuration configuration)
     {
         this.configuration = configuration;
+
+        // Services
+        this.youtubeDownloaderService = new YoutubeDownloaderService();
+        this.youtubePrimaryEntityService = new YoutubePrimaryEntityService();
+        this.dialogService = new DialogService();
+
+        // -> Initialize
+        this.youtubeDownloaderService.Initialize(configuration);
+        this.youtubePrimaryEntityService.Initialize(configuration);
+        this.dialogService.Initialize(configuration);
     }
 
     /// Returns true if the component has already been initialized
@@ -64,6 +78,7 @@ public class EntityController implements IYoutubeArchiverInitializer
         return this.configuration != null;
     }
 
+    // UI Initialization
     @FXML
     protected void initialize()
     {
@@ -90,13 +105,47 @@ public class EntityController implements IYoutubeArchiverInitializer
         this.entityTreeView.setRoot(root);
     }
 
+    /// Returns model object for this controller. This would be the root object needed by the
+    /// view. (TODO: Think of a way to handle templates for the model)
+    ///
+    /// @return The object (root) of the view's model
+    @Override
+    public Object GetModel()
+    {
+        return null;
+    }
+
+    /// Sets primary stage from the main application
+    ///
+    /// @param primaryStage Primary stage - owner of dialog windows
+    @Override
+    public void SetPrimaryStage(Stage primaryStage)
+    {
+        this.dialogService.SetPrimaryStage(primaryStage);
+    }
+
     public void getMyChannelsClicked(ActionEvent actionEvent)
     {
         // -> Google API (get my subscriptions)
     }
 
-    public void getChannelClicked(ActionEvent actionEvent)
+    public void getChannelClicked(ActionEvent actionEvent) throws IllegalStateException
     {
+        try
+        {
+            // Model
+            var model = new GetChannelDialogModel();
+
+            // Show Modal
+            this.dialogService.ShowModalDialog(model);
+
+            // -> Result
+            var channelId = model.getChannelUrl();
+        }
+        catch (Exception e)
+        {
+            throw new IllegalStateException("Unable to show modal dialog", e);
+        }
 
     }
 }

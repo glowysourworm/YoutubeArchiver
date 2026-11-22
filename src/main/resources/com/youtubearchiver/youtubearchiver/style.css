@@ -1,8 +1,14 @@
-.text-area#outputTextArea {
+.text-area#outputTextArea
+{
 }
 
-.hbox {
+.hbox
+{
     -fx-spacing: 5.0;
+}
+
+.dialog-view-base #descriptionText
+{
 }
 
 .tree-cell

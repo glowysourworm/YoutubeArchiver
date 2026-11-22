@@ -181,12 +181,6 @@ public class MainApplication extends Application
         // Load Control Tree (instantiates controllers)
         var parent = (Parent)fxmlLoader.load();
 
-        // Returns main controller
-        //var mainController = (MainController)fxmlLoader.getController();
-
-        // -> Set Configuration, Log Appender
-        //mainController.Initialize(this.configuration);
-
         // Create Scene
         this.mainScene = new Scene(parent, 800, 600);
         mainStage.setTitle("Youtube Archiver");

@@ -1,7 +1,7 @@
 package com.youtubearchiver.youtubearchiver.Controller;
 
 import YoutubeArchiverDatabase.Configuration;
-import YoutubeArchiverDatabase.IYoutubeArchiverInitializer;
+import com.youtubearchiver.youtubearchiver.Controller.Interface.IYoutubeArchiverController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
@@ -10,12 +10,13 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import org.kordamp.ikonli.fontawesome.FontAwesome;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.Arrays;
 
-public class MainController implements IYoutubeArchiverInitializer
+public class MainController implements IYoutubeArchiverController
 {
     // Configuration
     protected Configuration configuration;
@@ -54,6 +55,25 @@ public class MainController implements IYoutubeArchiverInitializer
     public boolean IsInitialized()
     {
         return this.configuration != null;
+    }
+
+    /// Returns model object for this controller. This would be the root object needed by the
+    /// view. (TODO: Think of a way to handle templates for the model)
+    ///
+    /// @return The object (root) of the view's model
+    @Override
+    public Object GetModel()
+    {
+        return null;
+    }
+
+    /// Sets primary stage from the main application
+    ///
+    /// @param primaryStage Primary stage - owner of dialog windows
+    @Override
+    public void SetPrimaryStage(Stage primaryStage)
+    {
+
     }
 
     @FXML
