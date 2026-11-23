@@ -1506,7 +1506,7 @@
       <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
       <Current>1</Current>
       <LastIntrospectionLevel>3</LastIntrospectionLevel>
-      <LastIntrospectionLocalTimestamp>2026-11-18.23:03:31</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2026-11-23.19:20:17</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </schema>
     <user id="559" parent="1" name="mariadb.sys">
