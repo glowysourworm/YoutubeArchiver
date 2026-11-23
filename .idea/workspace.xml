@@ -5,24 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed2043e7-25b0-429f-9e3e-40fb6f1d28e5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d59a3779-ada8-4939-b390-6b0bef14c588.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d59a3779-ada8-4939-b390-6b0bef14c588.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Model/LocalComment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Model/YoutubeArchiverEntityBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Model/YoutubeChannel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Model/YoutubeComment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Model/YoutubeCommentHistorical.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Model/YoutubeUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Model/YoutubeUserChannelMap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Model/YoutubeVideo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Service/YoutubeArchiverDatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/YoutubeArchiverDatabase/Service/YoutubeArchiverDatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/src/main/resources/hibernate.cfg.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YoutubeArchiverDatabase/youtube-archiver.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../YoutubeArchiverDatabase/youtube-archiver.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,61 +48,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000000000360802" />
-      <entry key="MS500" value="1.008156484992938" />
-      <entry key="S2" value="1.3577318444070223" />
-      <entry key="S5" value="2.218922955969676" />
-      <entry key="S10" value="3.179126819879414" />
-      <entry key="S30" value="5.21747065221995" />
-      <entry key="S60" value="7.3554459056918216" />
-      <entry key="M2" value="10.091165916994157" />
-      <entry key="M5" value="15.33337835383453" />
-      <entry key="M10" value="21.57116855521426" />
-      <entry key="M15" value="27.96926289445457" />
-      <entry key="M30" value="51.83900366078652" />
-      <entry key="H1" value="101.19030245014596" />
-      <entry key="H2" value="171.29494901504248" />
-      <entry key="H4" value="300.38179115320247" />
-      <entry key="D1" value="1554.3218782736776" />
-      <entry key="W1" value="6040.02309227909" />
+      <entry key="MS100" value="1.0499065586049428E-52" />
+      <entry key="MS500" value="4.0200377370124335E-11" />
+      <entry key="S2" value="0.0025335112358981808" />
+      <entry key="S5" value="0.11468683284472614" />
+      <entry key="S10" value="0.6285915187165693" />
+      <entry key="S30" value="3.1142428644660676" />
+      <entry key="S60" value="5.852546518290417" />
+      <entry key="M2" value="9.25277757758831" />
+      <entry key="M5" value="15.17396720535013" />
+      <entry key="M10" value="21.748447386209495" />
+      <entry key="M15" value="28.25758309561564" />
+      <entry key="M30" value="52.18100290537342" />
+      <entry key="H1" value="101.54922943529645" />
+      <entry key="H2" value="171.75263994252623" />
+      <entry key="H4" value="300.90654703948184" />
+      <entry key="D1" value="1554.9123292847203" />
+      <entry key="W1" value="6040.79576822819" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.5292005382480834E-17" />
-      <entry key="MS500" value="4.338977954887507E-4" />
-      <entry key="S2" value="0.18270348358124658" />
-      <entry key="S5" value="0.8670485881945434" />
-      <entry key="S10" value="1.6153621598824415" />
-      <entry key="S30" value="3.3121374444993514" />
-      <entry key="S60" value="5.778404794777625" />
-      <entry key="M2" value="9.099457232507895" />
-      <entry key="M5" value="13.600507275535174" />
-      <entry key="M10" value="17.559468153136134" />
-      <entry key="M15" value="21.43577567281972" />
-      <entry key="M30" value="38.208653091547674" />
-      <entry key="H1" value="79.85941797832771" />
-      <entry key="H2" value="143.84310936882093" />
-      <entry key="H4" value="252.87090094920822" />
-      <entry key="D1" value="1137.8235540255685" />
-      <entry key="W1" value="2912.426398260044" />
+      <entry key="MS100" value="1.0000076824611668" />
+      <entry key="MS500" value="1.0948637033108783" />
+      <entry key="S2" value="1.5549993399541457" />
+      <entry key="S5" value="1.8125438039050357" />
+      <entry key="S10" value="2.1698892512874566" />
+      <entry key="S30" value="3.9989533370273773" />
+      <entry key="S60" value="6.6322299537417075" />
+      <entry key="M2" value="10.352708332051291" />
+      <entry key="M5" value="15.533370112303286" />
+      <entry key="M10" value="19.86847922597265" />
+      <entry key="M15" value="23.87542331607816" />
+      <entry key="M30" value="40.715956666545665" />
+      <entry key="H1" value="82.3497881420318" />
+      <entry key="H2" value="146.38594421498004" />
+      <entry key="H4" value="255.4699428665054" />
+      <entry key="D1" value="1140.5235859571897" />
+      <entry key="W1" value="2915.3167571907875" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.009485897534336363" />
-      <entry key="MS500" value="0.3946384194280288" />
-      <entry key="S2" value="1.1384137478517888" />
-      <entry key="S5" value="2.7491133225323905" />
-      <entry key="S10" value="4.549584756441154" />
-      <entry key="S30" value="8.395913665467754" />
-      <entry key="S60" value="13.032924692075625" />
-      <entry key="M2" value="19.117226662337245" />
-      <entry key="M5" value="28.88800046999535" />
-      <entry key="M10" value="39.09669719243798" />
-      <entry key="M15" value="49.37382526801851" />
-      <entry key="M30" value="90.01327908157408" />
-      <entry key="H1" value="181.01004498339523" />
-      <entry key="H2" value="315.1012645506343" />
-      <entry key="H4" value="553.2199082420198" />
-      <entry key="D1" value="2692.119910678905" />
-      <entry key="W1" value="8952.437594270492" />
+      <entry key="MS100" value="0.01721726743557955" />
+      <entry key="MS500" value="0.4453023678262319" />
+      <entry key="S2" value="1.0147632800935547" />
+      <entry key="S5" value="1.5639335837060626" />
+      <entry key="S10" value="2.536349236284501" />
+      <entry key="S30" value="6.940959727772464" />
+      <entry key="S60" value="12.354042458124722" />
+      <entry key="M2" value="19.511829310369833" />
+      <entry key="M5" value="30.651061578999396" />
+      <entry key="M10" value="41.577278831515144" />
+      <entry key="M15" value="52.09790215230926" />
+      <entry key="M30" value="92.86066719322888" />
+      <entry key="H1" value="183.85841596589142" />
+      <entry key="H2" value="318.10131761986935" />
+      <entry key="H4" value="556.3434632247789" />
+      <entry key="D1" value="2695.4103512190263" />
+      <entry key="W1" value="8956.100622579557" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
