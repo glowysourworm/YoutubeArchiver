@@ -41,8 +41,8 @@
                 <Insets left="5" right="5" top="5" bottom="5" />
             </padding>
 
-            <Button text="Cancel" />
-            <Button text="Ok" />
+            <Button fx:id="CancelButton" text="Cancel" />
+            <Button fx:id="OkButton" text="Ok" />
         </HBox>
 
     </GridPane>

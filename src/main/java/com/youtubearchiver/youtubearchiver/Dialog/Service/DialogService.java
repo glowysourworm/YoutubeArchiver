@@ -7,6 +7,7 @@ import com.youtubearchiver.youtubearchiver.ControllerFactory;
 import com.youtubearchiver.youtubearchiver.Dialog.Controller.DialogControllerBase;
 import com.youtubearchiver.youtubearchiver.Dialog.Model.DialogModelBase;
 import com.youtubearchiver.youtubearchiver.MainApplication;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -83,7 +84,13 @@ public class DialogService implements IYoutubeArchiverInitializer
         // 3) Set the Parent's controller after from the now created Child controller
         // 4) Parent -> FX Initialize
         // 5) Set Controller's model, and (child) view (from the child loader), and call InitializeDialog()
-        // 6) Finally, set the Stage and show the dialog window as normal
+        // 6) Add Event listeners to dialog buttons*
+        // 7) Finally, set the Stage and show the dialog window as normal
+        //
+        //
+        // NOTE*  The "base" DialogControllerBase doesn't actually operate on the FXML. This is a
+        //        serious drawback.. But, this pseudo-pattern can be handled if we wire up the
+        //        dialog event buttons here in this method.
         //
 
         var loader = new FXMLLoader(MainApplication.class.getResource("dialog-view-base.fxml"));
@@ -116,10 +123,27 @@ public class DialogService implements IYoutubeArchiverInitializer
         dialogStage.setTitle(model.getTitle());
         dialogStage.setScene(new Scene(root));
 
+        // Confirm / Cancel
+        var okButton = root.lookup("#OkButton");
+        var cancelButton=  root.lookup("#CancelButton");
+
+        okButton.addEventHandler(ActionEvent.ACTION,  event ->
+        {
+            model.setConfirm(true);
+            dialogStage.close();
+        });
+        cancelButton.addEventHandler(ActionEvent.ACTION,  event ->
+        {
+            model.setCancel(true);
+            dialogStage.close();
+        });
+
         // Block interaction with other windows in the app
         dialogStage.initModality(Modality.APPLICATION_MODAL);
         dialogStage.initOwner(this.primaryStage);
         dialogStage.showAndWait();
+
+
 
         // Controller will give access to data model
         return (T) controller;

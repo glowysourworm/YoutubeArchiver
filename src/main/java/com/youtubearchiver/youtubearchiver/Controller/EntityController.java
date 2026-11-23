@@ -1,14 +1,25 @@
 package com.youtubearchiver.youtubearchiver.Controller;
 
 import YoutubeArchiverDatabase.Configuration;
+import YoutubeArchiverDatabase.Event.EventAggregator;
+import YoutubeArchiverDatabase.Logging.LogMessage;
 import YoutubeArchiverDatabase.Model.YoutubeArchiverEntityBase;
+import YoutubeArchiverDatabase.Service.YoutubeArchiverDatabaseConnection;
+import YoutubeArchiverDatabase.Service.YoutubeEntityMapper;
+import YoutubeArchiverDatabase.Utility.ApplicationHelpers;
+import YoutubeArchiverDatabase.Utility.UtilityModel.YoutubeDownloader.YoutubeDownloaderMetadata;
+import YoutubeArchiverDatabase.Utility.UtilityModel.YoutubeDownloader.YoutubeDownloaderRunType;
 import com.youtubearchiver.youtubearchiver.Controller.Interface.IYoutubeArchiverController;
+import com.youtubearchiver.youtubearchiver.DataModel.YoutubeDownloaderRequest;
+import com.youtubearchiver.youtubearchiver.DataModel.YoutubeDownloaderResponse;
 import com.youtubearchiver.youtubearchiver.Dialog.Model.GetChannelDialogModel;
 import com.youtubearchiver.youtubearchiver.Dialog.Service.DialogService;
+import com.youtubearchiver.youtubearchiver.Event.YoutubeChannelVideoListCompleteEvent;
+import com.youtubearchiver.youtubearchiver.Event.YoutubeVideoMetadataCompleteEvent;
 import com.youtubearchiver.youtubearchiver.Service.YoutubeDownloaderService;
-import com.youtubearchiver.youtubearchiver.Service.YoutubePrimaryEntityService;
 import com.youtubearchiver.youtubearchiver.UIModel.EntityTreeCell;
 import com.youtubearchiver.youtubearchiver.UIModel.EntityTreeCellData;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +30,7 @@ import javafx.scene.control.TreeView;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EntityController implements IYoutubeArchiverController
 {
@@ -42,12 +54,29 @@ public class EntityController implements IYoutubeArchiverController
 
     // Services
     protected YoutubeDownloaderService youtubeDownloaderService;
-    protected YoutubePrimaryEntityService youtubePrimaryEntityService;
     protected DialogService dialogService;
 
     public EntityController()
     {
         this.configuration = null;
+
+        // Services:  We're going to perform some basic yt-dlp requests
+        //
+        // Event Subscriptions:  YoutubeChannelVideoListCompleteEvent, YoutubeVideoMetadataCompleteEvent
+
+        EventAggregator.GetEvent(YoutubeChannelVideoListCompleteEvent.class)
+                       .Subscribe((response) ->
+                       {
+                           // Main Thread
+                           Platform.runLater(() -> OnYoutubeChannelListDownloadComplete(response));
+                       });
+
+        EventAggregator.GetEvent(YoutubeVideoMetadataCompleteEvent.class)
+                       .Subscribe(response ->
+                       {
+                           // Main Thread
+                           Platform.runLater(() -> OnYoutubeVideoMetadataComplete(response));
+                       });
     }
 
     /// Initializes the component with the application configuration
@@ -60,12 +89,10 @@ public class EntityController implements IYoutubeArchiverController
 
         // Services
         this.youtubeDownloaderService = new YoutubeDownloaderService();
-        this.youtubePrimaryEntityService = new YoutubePrimaryEntityService();
         this.dialogService = new DialogService();
 
         // -> Initialize
         this.youtubeDownloaderService.Initialize(configuration);
-        this.youtubePrimaryEntityService.Initialize(configuration);
         this.dialogService.Initialize(configuration);
     }
 
@@ -140,12 +167,71 @@ public class EntityController implements IYoutubeArchiverController
             this.dialogService.ShowModalDialog(model);
 
             // -> Result
-            var channelId = model.getChannelUrl();
+            if (model.getConfirm())
+            {
+                var channelId = model.getChannelUrl();
+
+                // -> yt-dlp (get channel video list)
+                var request = new YoutubeDownloaderRequest();
+                request.runType = YoutubeDownloaderRunType.ChannelVideoList;
+                request.channelId = channelId;
+
+                // -> Async Request
+                this.youtubeDownloaderService.ExecuteRequestAsync(request);
+            }
         }
         catch (Exception e)
         {
             throw new IllegalStateException("Unable to show modal dialog", e);
         }
+    }
 
+    // Youtube Channel Video List -> (Add/Update YoutubeChannel, get video metadata)
+    private void OnYoutubeChannelListDownloadComplete(YoutubeDownloaderResponse<List<String>> response)
+    {
+        // Request Failed
+        if (!response.result)
+            return;
+
+        for (var videoId : response.payload)
+        {
+            var request = new YoutubeDownloaderRequest();
+            request.videoId = videoId;
+            request.runType = YoutubeDownloaderRunType.VideoMetadata;
+
+            // -> Async Request (Video Metadata)
+            this.youtubeDownloaderService.ExecuteRequestAsync(request);
+        }
+    }
+
+    // Youtube Video Metadata -> (Add/Update YoutubeChannel) (Add/Update YoutubeVideo)
+    private void OnYoutubeVideoMetadataComplete(YoutubeDownloaderResponse<YoutubeDownloaderMetadata> response)
+    {
+        // Request Failed
+        if (!response.result)
+            return;
+
+        try(var connection = new YoutubeArchiverDatabaseConnection(this.configuration))
+        {
+            var youtubeChannel = connection.GetChannel(response.payload.channelId);
+            var youtubeVideo = connection.GetVideo(response.payload.id);
+
+            // YoutubeChannel: Add (only)
+            if (youtubeChannel == null)
+            {
+                youtubeChannel = YoutubeEntityMapper.CreateNew(response.payload.channelId, false);
+                connection.AddUpdate(youtubeChannel);
+            }
+
+            // YoutubeVideo: Add / Update
+            if (youtubeVideo == null)
+                youtubeVideo = YoutubeEntityMapper.Map(youtubeChannel, response.payload);
+
+            connection.AddUpdate(youtubeVideo);
+        }
+        catch ( Exception e)
+        {
+            ApplicationHelpers.Log(LogMessage.Error("Error updating Youtube Archiver Database:  " + e.getMessage(), e));
+        }
     }
 }
